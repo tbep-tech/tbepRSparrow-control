@@ -1,0 +1,68 @@
+varType,sparrowNames,data1UserNames,varunits,explanation
+REQUIRED,calsites,NA,NA,Calibration site index
+REQUIRED,waterid,time_arcid,NA,reach ID number
+REQUIRED,fnode,time_from_node,,reach from (upstream) node
+REQUIRED,tnode,time_to_node,,reach to (downstream) node
+REQUIRED,frac,frac,frac,transport fraction (1.0 indicates no diversion of water/mass)
+REQUIRED,iftran,iftran,,"""if transport"" indicator (0=no; 1=yes; nontransport, shoreline segments should be set to 0)"
+REQUIRED,demiarea,IncAreaKm2,Sq. Km.,"reach incremental drainage area (e.g., km2)"
+REQUIRED,hydseq,time_hydseq,NA,hydrological sequence number (reach order number needed for sorting data1 file)
+REQUIRED,termflag,Termflag,NA,reach terminal flag indicator (1=reach; 3=coastal reach)
+REQUIRED,rchtype,rchtype,NA,reach type indicator (0=reach; 1=reservoir internal reach; 2=reservoir outlet reach; 3=coastal segment)
+FIXED,target,delivery_target,,terminal target reach (1=target; 0=non target) for computing load delivery
+FIXED,lat,lat,Degrees,station latitude
+FIXED,lon,lon,Degrees,station longitude
+FIXED,rchname,NA,NA,reach name
+FIXED,demtarea,CumAreaKm2,km2,"reach total drainage area (e.g., km2)"
+FIXED,headflag,NA,NA,headwater reach indicator (1=headwater reach; 0=other reach)
+FIXED,length,LENGTHKM,km,"reach length (e.g., m, km)"
+FIXED,meanq,MAFlowUcfs,NA,mean annual streamflow 
+FIXED,rchtot,contrchdecay_RRLite,days,"reach time of travel (e.g., days)"
+FIXED,hload,NA,NA,"areal hydraulic load for reservoirs (e.g., m/yr)"
+FIXED,staid,staidnum,,numeric station ID (sequence number assigned by user; a new hydrological sequence number is assigned by code)
+FIXED,station_id,station_id_600,,alphanumeric station ID
+FIXED,station_name,station_name,,station name
+FIXED,depvar,SeasTotP_Mon,kg/yr,"mean load response variable (e.g., kg)"
+FIXED,depvar_se,SeasTotP_Mon_sd,kg/yr,"mean load response variable standard error (e.g., % of mean)"
+FIXED,weight,NA,,weight
+OPEN,meanload,NA,Kg. / Year,Mean Annual Load at Calibration Sites
+OPEN,meanyield,NA,Kg./Sq. Km./Year,Mean Annual Yield at Calibration Sites
+OPEN,meanconc,NA,mg/L,Mean Annual Flow-Weighted Concentration at Calibration Sites
+OPEN,meanloadSE,NA,Percent,Percent Error in Mean Annual Load at Calibration Sites
+OPEN,huc4,huc4,NA,Hydrologic unit cycle
+OPEN,huc8,huc8,NA,Hydrologic Unit Cycle
+OPEN,shrub,NA,Sq. Km.,Shrubland
+OPEN,grass,NA,Sq. Km.,Grassland
+OPEN,shrubgrass,NA,Sq. Km.,Combined shrub and grass lands
+OPEN,agric,NA,Sq. Km.,Agricultural lands (crops + pasture)
+OPEN,crops,NA,Sq. Km.,Cropland 
+OPEN,pasture,NA,Sq. Km.,Pasture land
+OPEN,forest,NA,Sq. Km.,Forested land
+OPEN,barren,NA,Sq. Km.,Barren land
+OPEN,wetlands,NA,Sq. Km.,Wetlands
+OPEN,Tagsite,NA,,Author identification of suitable calibration sites
+OPEN,S_point,NA,Kg./year,Point source load-reduction factors (scenario predictions)
+OPEN,S_ndep,NA,Kg./year,Atmospheric deposition source load-reduction factors (scenario predictions)
+OPEN,S_FARM_N,NA,Kg./year,Fertilizer  source load-reduction factors (scenario predictions)
+OPEN,PPT30MEAN,ppt,mm/yr,Precipitation (annual mean)
+OPEN,ldrainden,ldrainden,km/km2,Drainage density (km/km2)
+OPEN,meanTemp,meanTemp,degrees C.,Air temperature (annual mean)
+OPEN,tiles_perc,tiles_perc,fraction of area,Tile drainage (fraction of area)
+OPEN,soil_CLAYAVE,soil_CLAYAVE,fraction of area,Soil clay content (fraction of area)
+SOURCE,urban_Seas,Urban_Seas,Sq.Km.,urban lands
+SOURCE,FacWW_P,FacWW_P,NA,Municipal/industrial point source
+SOURCE,FacPmine,FacPmine,kg/year,Mined land permitted TP discharge to streams
+SOURCE,ManureP_Seas,ManureP_Seas,Kg./year,Livestock manure P
+SOURCE,FertP_Seas,FertP_Seas,Kg./year,Fertilizer P use
+SOURCE,GeolP,GeolP,,Potential for surficial geologic material in watershed to contribute P to streams
+SOURCE,Pmines_v17,Pmines_v17,ppm*km2,Mined area P content
+DELIVF,PrevSurfSoMoi,PrevSurfSoMoi, ,PrevSurfSoMoi
+DELIVF,logPPT,logppt,,logppt
+DELIVF,logAirTemp,logAirTemp,,log air temp
+DELIVF,PrevET,PrevET,,PrevET
+DELIVF,PrevEVIMean,PrevEVIMean,,PrevEVIMean
+DELIVF,lkfactup,lkfactup,,log of Kfactor (erodibility index)
+STRM,rchdecay1,rchdecay1,days,Small stream decay (mean Q<1.13 m3/s)
+STRM,rchdecay2,rchdecay2,days,Medium stream decay (1.13 m3/s < mean Q < 1.93 m3/s)
+STRM,rchdecay3,rchdecay3,days,Large stream decay (mean Q > 1.93 m3/s)
+RESV,iresload,iresload,m/day,Reservoir decay (areal hydr. Load)

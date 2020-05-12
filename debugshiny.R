@@ -15,7 +15,33 @@ library(rstudioapi)
 library(svDialogs)
 library(here)
 
-load('~/Desktop/shinyimage.RData')
+# shinyimage <- list(path_results = here('results/TampaBayTP'),
+#                    file_sum = 'TampaBayTP',
+#                    path_gis = here('gis'),
+#                    map_uncertainties = NA,
+#                    BootUncertainties = NA,
+#                    scenario_name = 'scenario1',
+#                    ConcFActor = 0.001143648,
+#                    reach_decay_specification = "exp(-data[,jdecvar[i]] * beta1[,jbdecvar[i]])",
+#                    reservoir_decay_specification = "(1 / (1 + data[,jresvar[i]] * beta1[,jbresvar[i]]))",
+#                    add_vars = c('huc2', 'huc4'),
+#                    csv_columnSeparator = ',',
+#                    csv_decimalSeparator = '.',
+#                    batch_mode = 'no',
+#                    ErrorOccured = 'no',
+#                    
+#                    data_names = data_names,
+#                    mapping.input.list = mapping.input.list,
+#                    subdata = subdata,
+#                    SelParmValues = SelParmValues,
+#                    sitedata = sitedata,
+#                    estimate.list = estimate.list,
+#                    DataMatrix.list = DataMatrix.list
+# )
+# save(here('shinyimage.RData'))
+
+load(here('shinyimage.RData'))
+
 for(i in 1:length(shinyimage)) 
   assign(names(shinyimage)[i], shinyimage[[i]])
 

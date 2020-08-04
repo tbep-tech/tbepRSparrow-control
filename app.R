@@ -137,10 +137,10 @@ shinyApp(  ui=shinyUI(
                    streamCatch("nsStreamCatch", input, choices, map_uncertainties),
 
                    #site Attribute arguments
-                   shinySiteAttr("nsSiteAttr",input,choices)#,
-# 
-#                    #scenarios arguments
-#                    shinyScenarios("nsScenarios",input),
+                   shinySiteAttr("nsSiteAttr",input,choices),
+
+                   #scenarios arguments
+                   shinyScenarios("nsScenarios",input)#,
 # 
 #                    #output shape file ifBatch
 #                    shapeFunc("nsBatch",input),

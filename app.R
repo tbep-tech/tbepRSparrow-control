@@ -128,47 +128,47 @@ shinyApp(  ui=shinyUI(
                    br(),
 
                    #top level user input
-                   selectInput("batch","Output Mode",c("Interactive","Batch"))#,
-                   # selectInput("mapFormat", "Map Format", c('Dynamic', 'Static')),
-                   #
-                   # selectInput("mapType","Map Type",mapTypeChoices),
-                   #
-                   # #Stream and Catchment arguments
-                   # streamCatch("nsStreamCatch", input, choices, map_uncertainties),
-                   #
-                   # #site Attribute arguments
-                   # shinySiteAttr("nsSiteAttr",input,choices),
-                   #
-                   # #scenarios arguments
-                   # shinyScenarios("nsScenarios",input),
-                   #
-                   # #output shape file ifBatch
-                   # shapeFunc("nsBatch",input),
-                   #
-                   # # actionButton("showInput","Show Input"),
-                   # conditionalPanel(
-                   #   condition = "input.batch=='Interactive'",
-                   #   fluidRow(
-                   #     actionButton("goPlot","Generate Plot"),
-                   #     actionButton("savePDF", "SaveAs PDF"))
-                   #
-                   # ),
-                   #
-                   # conditionalPanel(
-                   #   condition = "input.batch=='Batch'",
-                   #   actionButton("batchPlot","Save Plot(s)")
-                   # )
+                   selectInput("batch","Output Mode",c("Interactive","Batch")),
+                   selectInput("mapFormat", "Map Format", c('Dynamic', 'Static')),
+
+                   selectInput("mapType","Map Type",mapTypeChoices),
+
+                   #Stream and Catchment arguments
+                   streamCatch("nsStreamCatch", input, choices, map_uncertainties),
+
+                   #site Attribute arguments
+                   shinySiteAttr("nsSiteAttr",input,choices),
+
+                   #scenarios arguments
+                   shinyScenarios("nsScenarios",input),
+
+                   #output shape file ifBatch
+                   shapeFunc("nsBatch",input),
+
+                   # actionButton("showInput","Show Input"),
+                   conditionalPanel(
+                     condition = "input.batch=='Interactive'",
+                     fluidRow(
+                       actionButton("goPlot","Generate Plot"),
+                       actionButton("savePDF", "SaveAs PDF"))
+
+                   ),
+
+                   conditionalPanel(
+                     condition = "input.batch=='Batch'",
+                     actionButton("batchPlot","Save Plot(s)")
+                   )
       ),
 
-      mainPanel(width = 6, NULL
-                # conditionalPanel(
-                #   condition = "input.mapFormat=='Static'",
-                #   plotOutput("plotOne", width=900,height=900)
-                # ),
-                # conditionalPanel(
-                #   condition = "input.mapFormat=='Dynamic'",
-                #   leafletOutput("plotTwo", height = 800)
-                # )
+      mainPanel(width = 6,
+                conditionalPanel(
+                  condition = "input.mapFormat=='Static'",
+                  plotOutput("plotOne", width=900,height=900)
+                ),
+                conditionalPanel(
+                  condition = "input.mapFormat=='Dynamic'",
+                  leafletOutput("plotTwo", height = 800)
+                )
       )
 
     ))) #end ui function

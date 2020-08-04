@@ -160,7 +160,7 @@ shinyApp(  ui=shinyUI(
                    )
       ),
 
-      mainPanel(width = 6, NULL
+      mainPanel(width = 6,
                 conditionalPanel(
                   condition = "input.mapFormat=='Static'",
                   plotOutput("plotOne", width=900,height=900)

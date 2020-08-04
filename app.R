@@ -1,10 +1,4 @@
----
-output: 
-  html_document
-runtime: shiny
----
-  
-```{r}
+
 library(plyr)
 library(ggplot2)
 library(nlmrt)
@@ -65,6 +59,4 @@ shinyMap2(#stream/catchment
   reach_decay_specification,reservoir_decay_specification,
   add_vars,csv_decimalSeparator,csv_columnSeparator,
   batch_mode,ErrorOccured)
-
-```
 

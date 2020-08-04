@@ -128,47 +128,47 @@ shinyApp(  ui=shinyUI(
                    br(),
                    
                    #top level user input
-                   selectInput("batch","Output Mode",c("Interactive","Batch")),
-                   selectInput("mapFormat", "Map Format", c('Dynamic', 'Static')),
-                   
-                   selectInput("mapType","Map Type",mapTypeChoices),
-                   
-                   #Stream and Catchment arguments
-                   streamCatch("nsStreamCatch", input, choices, map_uncertainties),
-                   
-                   #site Attribute arguments
-                   shinySiteAttr("nsSiteAttr",input,choices),
-                   
-                   #scenarios arguments
-                   shinyScenarios("nsScenarios",input),
-                   
-                   #output shape file ifBatch
-                   shapeFunc("nsBatch",input),
-                   
-                   # actionButton("showInput","Show Input"),
-                   conditionalPanel(
-                     condition = "input.batch=='Interactive'",
-                     fluidRow(
-                       actionButton("goPlot","Generate Plot"),
-                       actionButton("savePDF", "SaveAs PDF"))       
-                     
-                   ),
-                   
-                   conditionalPanel(
-                     condition = "input.batch=='Batch'",
-                     actionButton("batchPlot","Save Plot(s)")      
-                   )
+                   selectInput("batch","Output Mode",c("Interactive","Batch"))#,
+                   # selectInput("mapFormat", "Map Format", c('Dynamic', 'Static')),
+                   # 
+                   # selectInput("mapType","Map Type",mapTypeChoices),
+                   # 
+                   # #Stream and Catchment arguments
+                   # streamCatch("nsStreamCatch", input, choices, map_uncertainties),
+                   # 
+                   # #site Attribute arguments
+                   # shinySiteAttr("nsSiteAttr",input,choices),
+                   # 
+                   # #scenarios arguments
+                   # shinyScenarios("nsScenarios",input),
+                   # 
+                   # #output shape file ifBatch
+                   # shapeFunc("nsBatch",input),
+                   # 
+                   # # actionButton("showInput","Show Input"),
+                   # conditionalPanel(
+                   #   condition = "input.batch=='Interactive'",
+                   #   fluidRow(
+                   #     actionButton("goPlot","Generate Plot"),
+                   #     actionButton("savePDF", "SaveAs PDF"))       
+                   #   
+                   # ),
+                   # 
+                   # conditionalPanel(
+                   #   condition = "input.batch=='Batch'",
+                   #   actionButton("batchPlot","Save Plot(s)")      
+                   # )
       ),
       
-      mainPanel(width = 6,
-                conditionalPanel(
-                  condition = "input.mapFormat=='Static'",
-                  plotOutput("plotOne", width=900,height=900)
-                ),
-                conditionalPanel(
-                  condition = "input.mapFormat=='Dynamic'",
-                  leafletOutput("plotTwo", height = 800)
-                )
+      mainPanel(width = 6, NULL
+                # conditionalPanel(
+                #   condition = "input.mapFormat=='Static'",
+                #   plotOutput("plotOne", width=900,height=900)
+                # ),
+                # conditionalPanel(
+                #   condition = "input.mapFormat=='Dynamic'",
+                #   leafletOutput("plotTwo", height = 800)
+                # )
       )
       
     ))) #end ui function
@@ -180,129 +180,129 @@ shinyApp(  ui=shinyUI(
   
   server=shinyServer(function(input, output,session) {
     
-    #compile all user input
-    # observeEvent(input$showInput,{
-    
-    #  compileALL<-compileALL(input, output, session, path_results, choices)
-    #  compiledInput<-compileALL$compiledInput
-    
-    
-    
-    # output$txtOut<-renderPrint({compiledInput})
-    #  })
-    
-    #select all and clear all buttons in drop downs 
-    observe({        
-      if (input$batch=="Batch" & input$mapType %in% c("Stream","Catchment","Site Attributes")){      
-        
-        lapply(1:length(as.character(unique(choices$category))), function(c) {
-          category<-as.character(unique(choices$category))[c]
-          if (category!="Prediction Uncertainties"){
-            nsName<-paste0("ns",tolower(str_split(category," ")[[1]][1]),"Drop")
-          }else{
-            nsName<-"nsuncertaintyDrop"
-          }
-          callModule(selectAll,nsName, category = category, choices = choices)
-        })
-        callModule(selectAll,"nsattrDrop", category = "Data Dictionary Variable", choices = choices)
-        
-      }
-    })
-    
-    #update variable lists according to variable type selection in interactive mode
-    observe({
-      if (input$batch=="Interactive" & input$mapType %in% c("Stream","Catchment")){     
-        callModule(updateVariable,"nsStreamCatch", choices= choices, mapType = input$mapType)
-        
-      }else if (input$batch=="Interactive" & input$mapType == "Site Attributes"){
-        callModule(updateVariable,"nsSiteAttr", choices= choices, mapType = input$mapType)
-      }
-    })
-    
-    
-    #rTables 
-    observe({
-      if (input$mapType %in% c("Source Reduction Scenarios")){
-        callModule(shinyScenariosMod,"nsScenarios",scenarioRtables)
-        #callModule(handsOnMod, "nsScenarios-nsAllSources", DF = scenarioRtables$allSourcesDF )
-      }else if (input$mapType %in% c("Stream","Catchment")){
-        callModule(handsOnMod, "nsStreamCatch-nsCosmetic", DF = as.data.frame(scenarioRtables$cosmeticPred))
-      }else if (input$mapType == "Site Attributes"){
-        callModule(handsOnMod, "nsSiteAttr-nsCosmetic", DF = as.data.frame(scenarioRtables$cosmeticSite))
-      }
-    })
-    
-    #interactive plot
-    p <- eventReactive(input$goPlot, {
-      #run plot
-      
-      goShinyPlot(input, output, session, choices,"goPlot",
-                  path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
-                  data_names,mapping.input.list,
-                  #predict.list,
-                  subdata,SelParmValues,
-                  #site attr
-                  sitedata,#estimate.list,Mdiagnostics.list,
-                  #scenarios
-                  scenario_name,JacobResults,
-                  ConcFactor,DataMatrix.list,
-                  reach_decay_specification,reservoir_decay_specification,
-                  #scenarios out
-                  add_vars,csv_decimalSeparator,csv_columnSeparator,
-                  #batchError
-                  batch_mode,ErrorOccured)
-      
-    })
-    
-    observe({
-      
-      if(input$mapFormat == 'Static')
-        output$plotOne <- renderPlot(p())
-      
-      if(input$mapFormat == 'Dynamic')
-        output$plotTwo <- renderLeaflet(p())
-      
-    })
-    
-    #pdf output
-    observeEvent(input$savePDF, {
-      goShinyPlot(input, output, session, choices,"savePDF",
-                  path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
-                  data_names,mapping.input.list,
-                  #predict.list,
-                  subdata,SelParmValues,
-                  #site attr
-                  sitedata,#estimate.list,Mdiagnostics.list,
-                  #scenarios
-                  scenario_name,JacobResults,
-                  ConcFactor,DataMatrix.list,
-                  reach_decay_specification,reservoir_decay_specification,
-                  #scenarios out
-                  add_vars,csv_decimalSeparator,csv_columnSeparator,
-                  #batchError
-                  batch_mode,ErrorOccured)
-    })#end pdf output
-    
-    #batchplot
-    observeEvent(input$batchPlot, {
-      goShinyPlot(input, output, session, choices,"batchPlot",
-                  path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
-                  data_names,mapping.input.list,
-                  #predict.list,
-                  subdata,SelParmValues,
-                  #site attr
-                  sitedata,#estimate.list,Mdiagnostics.list,
-                  #scenarios
-                  scenario_name,JacobResults,
-                  ConcFactor,DataMatrix.list,
-                  reach_decay_specification,reservoir_decay_specification,
-                  #scenarios out
-                  add_vars,csv_decimalSeparator,csv_columnSeparator,
-                  #batchError
-                  batch_mode,ErrorOccured)
-    })#end batch plot
-    session$onSessionEnded(function() {
-      stopApp()
-    }) 
+    # #compile all user input
+    # # observeEvent(input$showInput,{
+    # 
+    # #  compileALL<-compileALL(input, output, session, path_results, choices)
+    # #  compiledInput<-compileALL$compiledInput
+    # 
+    # 
+    # 
+    # # output$txtOut<-renderPrint({compiledInput})
+    # #  })
+    # 
+    # #select all and clear all buttons in drop downs 
+    # observe({        
+    #   if (input$batch=="Batch" & input$mapType %in% c("Stream","Catchment","Site Attributes")){      
+    #     
+    #     lapply(1:length(as.character(unique(choices$category))), function(c) {
+    #       category<-as.character(unique(choices$category))[c]
+    #       if (category!="Prediction Uncertainties"){
+    #         nsName<-paste0("ns",tolower(str_split(category," ")[[1]][1]),"Drop")
+    #       }else{
+    #         nsName<-"nsuncertaintyDrop"
+    #       }
+    #       callModule(selectAll,nsName, category = category, choices = choices)
+    #     })
+    #     callModule(selectAll,"nsattrDrop", category = "Data Dictionary Variable", choices = choices)
+    #     
+    #   }
+    # })
+    # 
+    # #update variable lists according to variable type selection in interactive mode
+    # observe({
+    #   if (input$batch=="Interactive" & input$mapType %in% c("Stream","Catchment")){     
+    #     callModule(updateVariable,"nsStreamCatch", choices= choices, mapType = input$mapType)
+    #     
+    #   }else if (input$batch=="Interactive" & input$mapType == "Site Attributes"){
+    #     callModule(updateVariable,"nsSiteAttr", choices= choices, mapType = input$mapType)
+    #   }
+    # })
+    # 
+    # 
+    # #rTables 
+    # observe({
+    #   if (input$mapType %in% c("Source Reduction Scenarios")){
+    #     callModule(shinyScenariosMod,"nsScenarios",scenarioRtables)
+    #     #callModule(handsOnMod, "nsScenarios-nsAllSources", DF = scenarioRtables$allSourcesDF )
+    #   }else if (input$mapType %in% c("Stream","Catchment")){
+    #     callModule(handsOnMod, "nsStreamCatch-nsCosmetic", DF = as.data.frame(scenarioRtables$cosmeticPred))
+    #   }else if (input$mapType == "Site Attributes"){
+    #     callModule(handsOnMod, "nsSiteAttr-nsCosmetic", DF = as.data.frame(scenarioRtables$cosmeticSite))
+    #   }
+    # })
+    # 
+    # #interactive plot
+    # p <- eventReactive(input$goPlot, {
+    #   #run plot
+    #   
+    #   goShinyPlot(input, output, session, choices,"goPlot",
+    #               path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
+    #               data_names,mapping.input.list,
+    #               #predict.list,
+    #               subdata,SelParmValues,
+    #               #site attr
+    #               sitedata,#estimate.list,Mdiagnostics.list,
+    #               #scenarios
+    #               scenario_name,JacobResults,
+    #               ConcFactor,DataMatrix.list,
+    #               reach_decay_specification,reservoir_decay_specification,
+    #               #scenarios out
+    #               add_vars,csv_decimalSeparator,csv_columnSeparator,
+    #               #batchError
+    #               batch_mode,ErrorOccured)
+    #   
+    # })
+    # 
+    # observe({
+    #   
+    #   if(input$mapFormat == 'Static')
+    #     output$plotOne <- renderPlot(p())
+    #   
+    #   if(input$mapFormat == 'Dynamic')
+    #     output$plotTwo <- renderLeaflet(p())
+    #   
+    # })
+    # 
+    # #pdf output
+    # observeEvent(input$savePDF, {
+    #   goShinyPlot(input, output, session, choices,"savePDF",
+    #               path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
+    #               data_names,mapping.input.list,
+    #               #predict.list,
+    #               subdata,SelParmValues,
+    #               #site attr
+    #               sitedata,#estimate.list,Mdiagnostics.list,
+    #               #scenarios
+    #               scenario_name,JacobResults,
+    #               ConcFactor,DataMatrix.list,
+    #               reach_decay_specification,reservoir_decay_specification,
+    #               #scenarios out
+    #               add_vars,csv_decimalSeparator,csv_columnSeparator,
+    #               #batchError
+    #               batch_mode,ErrorOccured)
+    # })#end pdf output
+    # 
+    # #batchplot
+    # observeEvent(input$batchPlot, {
+    #   goShinyPlot(input, output, session, choices,"batchPlot",
+    #               path_results,file_sum,path_gis,map_uncertainties,BootUncertainties,
+    #               data_names,mapping.input.list,
+    #               #predict.list,
+    #               subdata,SelParmValues,
+    #               #site attr
+    #               sitedata,#estimate.list,Mdiagnostics.list,
+    #               #scenarios
+    #               scenario_name,JacobResults,
+    #               ConcFactor,DataMatrix.list,
+    #               reach_decay_specification,reservoir_decay_specification,
+    #               #scenarios out
+    #               add_vars,csv_decimalSeparator,csv_columnSeparator,
+    #               #batchError
+    #               batch_mode,ErrorOccured)
+    # })#end batch plot
+    # session$onSessionEnded(function() {
+    #   stopApp()
+    # }) 
   })#end server function
 )

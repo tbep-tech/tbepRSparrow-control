@@ -143,32 +143,32 @@ shinyApp(  ui=shinyUI(
                    shinyScenarios("nsScenarios",input),
 
                    #output shape file ifBatch
-                   shapeFunc("nsBatch",input),
+                   shapeFunc("nsBatch",input)#,
 
-                   # actionButton("showInput","Show Input"),
-                   conditionalPanel(
-                     condition = "input.batch=='Interactive'",
-                     fluidRow(
-                       actionButton("goPlot","Generate Plot"),
-                       actionButton("savePDF", "SaveAs PDF"))
-
-                   ),
-
-                   conditionalPanel(
-                     condition = "input.batch=='Batch'",
-                     actionButton("batchPlot","Save Plot(s)")
-                   )
+                   # # actionButton("showInput","Show Input"),
+                   # conditionalPanel(
+                   #   condition = "input.batch=='Interactive'",
+                   #   fluidRow(
+                   #     actionButton("goPlot","Generate Plot"),
+                   #     actionButton("savePDF", "SaveAs PDF"))
+                   # 
+                   # ),
+                   # 
+                   # conditionalPanel(
+                   #   condition = "input.batch=='Batch'",
+                   #   actionButton("batchPlot","Save Plot(s)")
+                   # )
       ),
 
-      mainPanel(width = 6,
-                conditionalPanel(
-                  condition = "input.mapFormat=='Static'",
-                  plotOutput("plotOne", width=900,height=900)
-                ),
-                conditionalPanel(
-                  condition = "input.mapFormat=='Dynamic'",
-                  leafletOutput("plotTwo", height = 800)
-                )
+      mainPanel(width = 6, NULL
+                # conditionalPanel(
+                #   condition = "input.mapFormat=='Static'",
+                #   plotOutput("plotOne", width=900,height=900)
+                # ),
+                # conditionalPanel(
+                #   condition = "input.mapFormat=='Dynamic'",
+                #   leafletOutput("plotTwo", height = 800)
+                # )
       )
 
     ))) #end ui function

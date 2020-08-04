@@ -47,8 +47,8 @@ for(i in 1:length(shinyimage))
   assign(names(shinyimage)[i], shinyimage[[i]])
 
 # reset paths to relative
-path_results <- here('results/TampaBayTP')
-path_gis <- here('gis')
+path_results <- here::here('results/TampaBayTP')
+path_gis <- here::here('gis')
 
 path_master <- "../tbepRSparrow/"
 devtools::load_all(path_master,recompile = F)  

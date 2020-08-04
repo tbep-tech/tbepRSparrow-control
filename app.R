@@ -50,7 +50,7 @@ for(i in 1:length(shinyimage))
 path_results <- here::here('results/TampaBayTP')
 path_gis <- here::here('gis')
 
-path_master <- "../tbepRSparrow/"
+path_master <- here::here("../tbepRSparrow/")
 devtools::load_all(path_master,recompile = F)  
 
 shinyMap2(#stream/catchment

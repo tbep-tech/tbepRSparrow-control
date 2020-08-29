@@ -13,23 +13,14 @@
 
 ###########################################################
 
-modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,batch_mode,
-                          path_user,results_directoryName,csv_columnSeparator,csv_decimalSeparator,
-                          ErrorOccured) {
-
-  startModifySubdata(betavalues,data_names,subdata,batch_mode,ErrorOccured)
-  
-  
   
   ##################################################################
   # set longitude to be consistent with map limits
   if (!is.na(lon_limit)){
     if(lon_limit[1] < 0 & lon_limit[2] < 0) {
       for (i in 1:length(lon)) {  # ensure that longitude is negative
-        if(length(lon[i]>0)){
-          if(!is.na(lon[i])) {
+        if(!is.na(lon[i])) {
           lon[i] <- -(abs(lon[i]))
-          }
         } 
       }
     }
@@ -40,35 +31,34 @@ modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,
 
   # Also place any additional site filtering statements here...
   #  Example: exclude site loads with standard error greater than 50% 
-  #calsites <- ifelse(depvar > 0 & (depvar_se/depvar)*100 > 50,0,calsites)
+  #  calsites <- ifelse(depvar > 0 & (depvar_se/depvar)*100 > 50,0,calsites)
 
-  calsites <- ifelse(depvar>0,1,0)   # set default for cases where load>0
-  #calsites <- Tagsite   # index defined in advanced for MRB3 model
-  #calsites <- Tagsite
+  # calsites <- ifelse(depvar>0,1,0)   # set default for cases where load>0
+  calsites <- Tagsite   # index defined in advanced for MRB3 model
   
   
   ############################################################
   # Define any contiguous classification variables here...
 
   # Define HUC2 and HUC4 values...
-  #chk <- character(1)
-  #for (i in 1:length(huc)) {
-  #  chk <- huc[i]
-  # if (nchar(chk) == 7) {
-  # huc[i] <- paste('0',chk,sep="")
-  # }
-  #}
-  #huc2 <- substr(huc,1,2)
-  #huc8 <- substr(huc,1,8)  
-  #huc4 <- substr(huc,1,4)  
+  chk <- character(1)
+  for (i in 1:length(huc)) {
+    chk <- huc[i]
+    if (nchar(chk) == 7) {
+      huc[i] <- paste('0',chk,sep="")
+    }
+  }
+  huc2 <- substr(huc,1,2)
+  huc8 <- substr(huc,1,8)  
+  huc4 <- substr(huc,1,4)  
   
 #  table(huc4)           
 #  table(huc8)
 #  table(huc2)
   
-  #huc2 <- as.numeric(huc2)
-  #huc4 <- as.numeric(huc4)
-  #huc8 <- as.numeric(huc8)
+  huc2 <- as.numeric(huc2)
+  huc4 <- as.numeric(huc4)
+  huc8 <- as.numeric(huc8)
   
 
   ############################################################
@@ -78,12 +68,13 @@ modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,
   target <- ifelse(termflag == 1 | termflag == 3, 1, 0)
   
   # Specify the condition for transfer of load from upstream node to downstream node 
-  #   iftran <- ifelse(meanq > 0 | staid > 0,1,0)    #  changed 7-24-2014
+  #    iftran <- ifelse(meanq > 0 | staid > 0,1,0)    #  changed 7-24-2014
   #    iftran <- ifelse(termflag == 3 | termflag == 1,0,iftran)  # no transport beyond stations or along coastal segments
   #    iftran <- ifelse(is.na(iftran),0,iftran)
   
   # Fix cases of NAs (staid, depvar, iftran, demtarea, demiarea)
-  replaceNAs(named.list(staid,iftran,demtarea,demiarea))
+  replaceNAs(named.list(staid,iftran,demtarea,demiarea))     # replace NAs with zeros
+  
   #staid <- ifelse(is.na(staid),0,staid)
   #iftran <- ifelse(is.na(iftran),0,iftran)
   #demtarea <- ifelse(is.na(demtarea),0,demtarea)
@@ -100,14 +91,14 @@ modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,
   # rchdecay1 <- rchdecay1
   # rchdecay2 <- rchdecay2
   
-      rchtot <- ifelse(rchtot <= 0,rchtot==0.0,rchtot)
-      rchdecay1 <- ifelse(meanq <= 500 & rchtype == 0,rchtot,0.0)
-      rchdecay2 <- ifelse(meanq > 500 & meanq <= 10000 & rchtype == 0,rchtot,0.0)
-      rchdecay3 <- ifelse(meanq > 10000 & rchtype == 0,rchtot,0.0)
+  #    rchtot <- ifelse(rchtot <= 0,rchtot==0.0,rchtot)
+  #    rchdecay1 <- ifelse(meanq <= 500 & rchtype == 0,rchtot,0.0)
+  #    rchdecay2 <- ifelse(meanq > 500 & meanq <= 10000 & rchtype == 0,rchtot,0.0)
+  #    rchdecay3 <- ifelse(meanq > 10000 & rchtype == 0,rchtot,0.0)
   
-      rchdecay1 <- ifelse(is.na(rchdecay1),0,rchdecay1)
-      rchdecay2 <- ifelse(is.na(rchdecay2),0,rchdecay2)
-      rchdecay3 <- ifelse(is.na(rchdecay3),0,rchdecay3)
+  #    rchdecay1 <- ifelse(is.na(rchdecay1),0,rchdecay1)
+  #    rchdecay2 <- ifelse(is.na(rchdecay2),0,rchdecay2)
+  #    rchdecay3 <- ifelse(is.na(rchdecay3),0,rchdecay3)
   
   # Define the reservoir decay variable 
   #  iresload already defined
@@ -121,33 +112,45 @@ modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,
   
   # Check source and delivery variables for missing values
   
-  # Check land use variables for NAs
-  #agric <- crops + pasture
-  #shrubgrass <- shrub + grass
-  #names <- named.list(agric,forest,grass,shrub,barren,wetlands,urban,shrubgrass)
-  #replaceNAs(names)
+  # Check land use variables for NAs and replace with zeros
+  agric <- crops + pasture
+  shrubgrass <- shrub + grass
+  names <- named.list(agric,forest,grass,shrub,barren,wetlands,urban,shrubgrass)
+  replaceNAs(names)
   
-  #crops <- crops / 1000000
-  #pasture <- pasture / 1000000
+  crops <- crops / 1000000
+  pasture <- pasture / 1000000
 
-  #agric <- agric / 1000000
-  #forest <- forest / 1000000
-  #grass <- grass / 1000000
-  #shrub <- shrub / 1000000
-  #barren <- barren / 1000000
-  #wetlands <- wetlands / 1000000
-  #urban <- urban / 1000000
-  #shrubgrass <- shrubgrass / 1000000
+  agric <- agric / 1000000
+  forest <- forest / 1000000
+  grass <- grass / 1000000
+  shrub <- shrub / 1000000
+  barren <- barren / 1000000
+  wetlands <- wetlands / 1000000
+  urban <- urban / 1000000
+  shrubgrass <- shrubgrass / 1000000
   
+  landUseArea <- agric+forest+grass+shrub+barren+wetlands+urban+shrubgrass 
+  urban_percent <- urban / landUseArea *100
+  agric_percent <- agric / landUseArea * 100
+  crops_percent <- crops / landUseArea * 100
+  pasture_percent <- pasture / landUseArea *100
+  forest_percent <- forest / landUseArea * 100
+  shrubgrass_percent <- shrubgrass / landUseArea * 100
+  barren_percent <- barren / landUseArea * 100 
   
   # Apply load reduction factors to the scenario matrix for selected reaches
   #  in cases where the control setting: if_predict_scenarios<-"selected reaches".
   #  The "S_" prefix is required in these cases.
   #  The example applies scenario conditions to all reaches in HUC2 = 5 (Ohio basin)
-  #S_point <- ifelse(huc2 == 5,0.5,1)      # point sources
-  #S_ndep <- ifelse(huc2 == 5,0.25,1)     # deposition
-  #S_FARM_N <- ifelse(huc2 == 5,1.15,1)     # farm fertilizer
-
+ # S_point <- ifelse(huc2 == 5,0.5,1)      # point sources
+#  S_ndep <- ifelse(huc2 == 5,0.25,1)     # deposition
+#  S_FARM_N <- ifelse(huc2 == 5,1.15,1)     # farm fertilizer
+#  scenario_sources <- c("urban","crops","pasture")  
+  S_urban <- ifelse(huc2 == 7,0.5,1)      # point sources
+  S_crops <- ifelse(huc2 == 7,0.25,1)     # deposition
+  S_pasture <- ifelse(huc2 == 5,1.15,1)     # farm fertilizer
+  
   
   #Site attributes to map
   meanload <- depvar
@@ -156,13 +159,15 @@ modifySubdata <- function(betavalues,data_names,subdata,class_landuse,lon_limit,
   meanloadSE <- depvar_se/depvar*100
   
 
+  ######## weighted NLLS
+  #pre_run_id <- "Model6"
+
+  #nreaches <- length(fnode)
+  #weight <- estimateWeightedErrors(file.output.list,run_id,pre_run_id,nreaches,calsites)
+  
+  
   #x <- abs( rnorm(length(FARM_N)) )
   #MANC_N <- FARM_N
   #####################################################################################
-  endModifySubdata(betavalues,data_names,subdata,class_landuse,batch_mode,ErrorOccured)
 
-  ##########################################################################################
-  
-  return(subdata) 
-    }
 

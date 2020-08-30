@@ -630,7 +630,7 @@
   ### 11. DIRECTORY AND MODEL IDENTIFICATION AND CONTROL SCRIPT OPERATIONS ####
   #############################################################################
   
-  path_master <- "./RSPARROW_master"
+  path_master <- "../tbepRSparrow"
   
   #results, data, and gis directories should be in Users Directory
   results_directoryName<-"results"
@@ -638,7 +638,7 @@
   gis_directoryName<-"gis"
 
   #Select current run_id for the model
-  run_id<-"Model6"
+  run_id<-"UpperMissOhio"
   
   # Load previous model settings into active control script
   #  Specify name of old model to copy into results directory for edit and run

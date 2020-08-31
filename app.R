@@ -30,6 +30,7 @@ library(htmltools)
 library(plotly)
 library(mapview)
 library(magrittr)
+library(shinyjs)
 
 # reset paths to relative
 path_results <- here::here('results/UpperMissOhio/')
@@ -79,8 +80,11 @@ scenarioRtables<-createRTables(selectSources,data_names,mapping.input.list)
 #setup shiny ui
 shinyApp(  ui=shinyUI(
   
-  fluidPage(tags$head(
-    tags$style("h5{color: red}")),
+  fluidPage(
+    tags$head(tags$style("h5{color: red}")),
+    
+    shinyjs::useShinyjs(),
+    
     titlePanel(
       h1(paste("RShiny Decision Support System : ",run_id,sep=""))),
     
@@ -93,7 +97,8 @@ shinyApp(  ui=shinyUI(
         ),
         
         # for control file upload or input       
-        uiOutput('entry')
+        uiOutput('entry'),
+        textOutput('modeltext')
                
       ),
       tabPanel('Plots', 

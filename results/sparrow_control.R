@@ -677,7 +677,7 @@
   ## Start Model Run
   ## DO NOT MAKE EDITS TO THIS SECTION
   #############################################
-  activeFile<-'results/sparrow_control.R'#findScriptName() #get activeFile Name
+  activeFile<-'results/sparrow_control.R'
   runRsparrow<-"yes"
   rstudioapi::setCursorPosition(c(1,1,575,1))
   source(paste(path_master,"/R/runRsparrow.R",sep=""))

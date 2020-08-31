@@ -1,73 +1,73 @@
 "varType","sparrowNames","data1UserNames","varunits","explanation","run_id","duplicate_sparrowName"
-"REQUIRED","waterid","mrb_id","","reach ID number","UpperMissOhio",0
-"REQUIRED","fnode","fnode","","reach from (upstream) node","UpperMissOhio",0
-"REQUIRED","tnode","tnode","","reach to (downstream) node","UpperMissOhio",0
-"REQUIRED","frac","frac","Fraction","transport fraction (1.0 indicates no diversion of water/mass)","UpperMissOhio",0
-"REQUIRED","iftran","iftran","","if transport indicator (0=no; 1=yes; nontransport","UpperMissOhio",0
-"REQUIRED","hydseq","hydseq","","hydrological sequence number (reach order number needed for sorting data1 file)","UpperMissOhio",0
-"REQUIRED","termflag","termflag","","reach terminal flag indicator (1=reach; 3=coastal reach)","UpperMissOhio",0
-"REQUIRED","rchtype","rchtype","","reach type indicator (0=reach; 1=reservoir internal reach; 2=reservoir outlet reach; 3=coastal segment)","UpperMissOhio",0
-"REQUIRED","calsites","calsites","","Calibration site index","UpperMissOhio",0
-"FIXED","rchname","pname","","reach name","UpperMissOhio",0
-"FIXED","demtarea","demtarea","Sq. Km.","reach total drainage area (km2)","UpperMissOhio",0
-"FIXED","length","length","meters","reach length","UpperMissOhio",0
-"FIXED","meanq","meanq","ft3/s","mean annual streamflow","UpperMissOhio",0
-"FIXED","rchtot","rchtot","days","reach time of travel (days)","UpperMissOhio",0
-"FIXED","hload","hload","meters/yr","areal hydraulic load for reservoirs (e.g.","UpperMissOhio",0
-"FIXED","target","target","","terminal target reach (1=target; 0=non target) for computing load delivery","UpperMissOhio",0
-"FIXED","headflag","headflag","","headwater reach indicator (1=headwater reach; 0=other reach)","UpperMissOhio",0
-"FIXED","staid","staid","","numeric station ID (sequence number assigned by user; a new hydrological sequence number is assigned by code)","UpperMissOhio",0
-"FIXED","station_id","station_id","","alphanumeric station ID","UpperMissOhio",0
-"FIXED","depvar","LOAD_A_00600","Kg. / Year","mean load response variable (e.g.","UpperMissOhio",0
-"FIXED","depvar_se","SLOAD_A_00600","Kg./Year","mean load response variable standard error","UpperMissOhio",0
-"FIXED","lat","lat","Degrees","station latitude","UpperMissOhio",0
-"FIXED","lon","lon","Degrees","station longitude","UpperMissOhio",0
-"FIXED","station_name","station_name","","station name","UpperMissOhio",0
-"FIXED","weight",NA,"","System variable for weighted NLLS","UpperMissOhio",0
-"SOURCE","demiarea","demiarea","Sq. Km.","reach incremental drainage area (km2)","UpperMissOhio",0
-"SOURCE","shrubgrass",NA,"Sq. Km.","Combined shrub and grass lands","UpperMissOhio",0
-"SOURCE","agric",NA,"Sq. Km.","Agricultural lands (crops + pasture)","UpperMissOhio",0
-"SOURCE","crops","crops","Sq. Km.","Cropland","UpperMissOhio",0
-"SOURCE","pasture","pasture","Sq. Km.","Pasture land","UpperMissOhio",0
-"SOURCE","forest","forest","Sq. Km.","Forested land","UpperMissOhio",0
-"SOURCE","barren","barren","Sq. Km.","Barren land","UpperMissOhio",0
-"SOURCE","wetlands","wetlands","Sq. Km.","Wetlands","UpperMissOhio",0
-"SOURCE","urban","urban","Sq. Km.","Urban lands","UpperMissOhio",0
-"SOURCE","point","point","Kg./year","Municipal/industrial point source","UpperMissOhio",0
-"SOURCE","ndep","ndep","Kg./year","Atmospheric deposition N (wet only)","UpperMissOhio",0
-"SOURCE","MANC_N","MANC_N","Kg./year","Livestock manure N","UpperMissOhio",0
-"SOURCE","FARM_N","FARM_N","Kg./year","Fertilizer N use","UpperMissOhio",0
-"SOURCE","Fixation","Fixation","Sq. Km.","Cropland area (fixation-related)","UpperMissOhio",0
-"DELIVF","ldrainden","ldrainden","km/km2","Drainage density (km/km2)","UpperMissOhio",0
-"DELIVF","PPT30MEAN","PPT30MEAN","mm/yr","Precipitation (annual mean)","UpperMissOhio",0
-"DELIVF","meanTemp","meanTemp","degrees C.","Air temperature (annual mean)","UpperMissOhio",0
-"DELIVF","tiles_perc","tiles_perc","fraction of area","Tile drainage (fraction of area)","UpperMissOhio",0
-"DELIVF","soil_CLAYAVE","soil_CLAYAVE","fraction of area","Soil clay content (fraction of area)","UpperMissOhio",0
-"STRM","rchdecay1","rchdecay1","days","Small stream decay (mean Q<1.13 m3/s)","UpperMissOhio",0
-"STRM","rchdecay2","rchdecay2","days","Medium stream decay (1.13 m3/s < mean Q < 1.93 m3/s)","UpperMissOhio",0
-"STRM","rchdecay3","rchdecay3","days","Large stream decay (mean Q > 1.93 m3/s)","UpperMissOhio",0
-"RESV","iresload","iresload","m/day","Reservoir decay (areal hydr. Load)","UpperMissOhio",0
-"OPEN","meanload",NA,"Kg. / Year","Mean Annual Load at Calibration Sites","UpperMissOhio",0
-"OPEN","meanyield",NA,"Kg./Sq. Km./Year","Mean Annual Yield at Calibration Sites","UpperMissOhio",0
-"OPEN","meanconc",NA,"mg/L","Mean Annual Flow-Weighted Concentration at Calibration Sites","UpperMissOhio",0
-"OPEN","meanloadSE",NA,"Percent","Percent Error in Mean Annual Load at Calibration Sites","UpperMissOhio",0
-"OPEN","huc","huc","","Hydrologic Unit Code","UpperMissOhio",0
-"OPEN","huc2",NA,"","Hydrologic Unit Code","UpperMissOhio",0
-"OPEN","huc4",NA,"","Hydrologic Unit Code","UpperMissOhio",0
-"OPEN","huc8",NA,"","Hydrologic Unit Code","UpperMissOhio",0
-"OPEN","shrub","shrub","Sq. Km.","Shrubland","UpperMissOhio",0
-"OPEN","grass","grass","Sq. Km.","Grassland","UpperMissOhio",0
-"OPEN","Tagsite","Tagsite","","Author identification of suitable calibration sites","UpperMissOhio",0
-"OPEN","S_point",NA,"Kg./year","Point source load-reduction factors (scenario predictions)","UpperMissOhio",0
-"OPEN","S_ndep",NA,"Kg./year","Atmospheric deposition source load-reduction factors (scenario predictions)","UpperMissOhio",0
-"OPEN","S_FARM_N",NA,"Kg./year","Fertilizer  source load-reduction factors (scenario predictions)","UpperMissOhio",0
-"OPEN","S_urban",NA,"","Scenario urban source","UpperMissOhio",0
-"OPEN","S_crops",NA,"","Scenario crop source","UpperMissOhio",0
-"OPEN","S_pasture",NA,"","Scenario pasture source","UpperMissOhio",0
-"OPEN","urban_percent",NA,"percent","Urban land use as percent of incremental area","UpperMissOhio",0
-"OPEN","agric_percent",NA,"percent","Agricultural land use as percent of incremental area","UpperMissOhio",0
-"OPEN","crops_percent",NA,"percent","Crop land use as percent of incremental area","UpperMissOhio",0
-"OPEN","pasture_percent",NA,"percent","Pasture land use as percent of incremental area","UpperMissOhio",0
-"OPEN","forest_percent",NA,"percent","Forest land use as percent of incremental area","UpperMissOhio",0
-"OPEN","shrubgrass_percent",NA,"percent","Shrub-grass land use as percent of incremental area","UpperMissOhio",0
-"OPEN","barren_percent",NA,"percent","Barren land use as percent of incremental area","UpperMissOhio",0
+"REQUIRED","waterid","mrb_id","","reach ID number","ModRun",0
+"REQUIRED","fnode","fnode","","reach from (upstream) node","ModRun",0
+"REQUIRED","tnode","tnode","","reach to (downstream) node","ModRun",0
+"REQUIRED","frac","frac","Fraction","transport fraction (1.0 indicates no diversion of water/mass)","ModRun",0
+"REQUIRED","iftran","iftran","","if transport indicator (0=no; 1=yes; nontransport","ModRun",0
+"REQUIRED","hydseq","hydseq","","hydrological sequence number (reach order number needed for sorting data1 file)","ModRun",0
+"REQUIRED","termflag","termflag","","reach terminal flag indicator (1=reach; 3=coastal reach)","ModRun",0
+"REQUIRED","rchtype","rchtype","","reach type indicator (0=reach; 1=reservoir internal reach; 2=reservoir outlet reach; 3=coastal segment)","ModRun",0
+"REQUIRED","calsites","calsites","","Calibration site index","ModRun",0
+"FIXED","rchname","pname","","reach name","ModRun",0
+"FIXED","demtarea","demtarea","Sq. Km.","reach total drainage area (km2)","ModRun",0
+"FIXED","length","length","meters","reach length","ModRun",0
+"FIXED","meanq","meanq","ft3/s","mean annual streamflow","ModRun",0
+"FIXED","rchtot","rchtot","days","reach time of travel (days)","ModRun",0
+"FIXED","hload","hload","meters/yr","areal hydraulic load for reservoirs (e.g.","ModRun",0
+"FIXED","target","target","","terminal target reach (1=target; 0=non target) for computing load delivery","ModRun",0
+"FIXED","headflag","headflag","","headwater reach indicator (1=headwater reach; 0=other reach)","ModRun",0
+"FIXED","staid","staid","","numeric station ID (sequence number assigned by user; a new hydrological sequence number is assigned by code)","ModRun",0
+"FIXED","station_id","station_id","","alphanumeric station ID","ModRun",0
+"FIXED","depvar","LOAD_A_00600","Kg. / Year","mean load response variable (e.g.","ModRun",0
+"FIXED","depvar_se","SLOAD_A_00600","Kg./Year","mean load response variable standard error","ModRun",0
+"FIXED","lat","lat","Degrees","station latitude","ModRun",0
+"FIXED","lon","lon","Degrees","station longitude","ModRun",0
+"FIXED","station_name","station_name","","station name","ModRun",0
+"FIXED","weight",NA,"","System variable for weighted NLLS","ModRun",0
+"SOURCE","demiarea","demiarea","Sq. Km.","reach incremental drainage area (km2)","ModRun",0
+"SOURCE","shrubgrass",NA,"Sq. Km.","Combined shrub and grass lands","ModRun",0
+"SOURCE","agric",NA,"Sq. Km.","Agricultural lands (crops + pasture)","ModRun",0
+"SOURCE","crops","crops","Sq. Km.","Cropland","ModRun",0
+"SOURCE","pasture","pasture","Sq. Km.","Pasture land","ModRun",0
+"SOURCE","forest","forest","Sq. Km.","Forested land","ModRun",0
+"SOURCE","barren","barren","Sq. Km.","Barren land","ModRun",0
+"SOURCE","wetlands","wetlands","Sq. Km.","Wetlands","ModRun",0
+"SOURCE","urban","urban","Sq. Km.","Urban lands","ModRun",0
+"SOURCE","point","point","Kg./year","Municipal/industrial point source","ModRun",0
+"SOURCE","ndep","ndep","Kg./year","Atmospheric deposition N (wet only)","ModRun",0
+"SOURCE","MANC_N","MANC_N","Kg./year","Livestock manure N","ModRun",0
+"SOURCE","FARM_N","FARM_N","Kg./year","Fertilizer N use","ModRun",0
+"SOURCE","Fixation","Fixation","Sq. Km.","Cropland area (fixation-related)","ModRun",0
+"DELIVF","ldrainden","ldrainden","km/km2","Drainage density (km/km2)","ModRun",0
+"DELIVF","PPT30MEAN","PPT30MEAN","mm/yr","Precipitation (annual mean)","ModRun",0
+"DELIVF","meanTemp","meanTemp","degrees C.","Air temperature (annual mean)","ModRun",0
+"DELIVF","tiles_perc","tiles_perc","fraction of area","Tile drainage (fraction of area)","ModRun",0
+"DELIVF","soil_CLAYAVE","soil_CLAYAVE","fraction of area","Soil clay content (fraction of area)","ModRun",0
+"STRM","rchdecay1","rchdecay1","days","Small stream decay (mean Q<1.13 m3/s)","ModRun",0
+"STRM","rchdecay2","rchdecay2","days","Medium stream decay (1.13 m3/s < mean Q < 1.93 m3/s)","ModRun",0
+"STRM","rchdecay3","rchdecay3","days","Large stream decay (mean Q > 1.93 m3/s)","ModRun",0
+"RESV","iresload","iresload","m/day","Reservoir decay (areal hydr. Load)","ModRun",0
+"OPEN","meanload",NA,"Kg. / Year","Mean Annual Load at Calibration Sites","ModRun",0
+"OPEN","meanyield",NA,"Kg./Sq. Km./Year","Mean Annual Yield at Calibration Sites","ModRun",0
+"OPEN","meanconc",NA,"mg/L","Mean Annual Flow-Weighted Concentration at Calibration Sites","ModRun",0
+"OPEN","meanloadSE",NA,"Percent","Percent Error in Mean Annual Load at Calibration Sites","ModRun",0
+"OPEN","huc","huc","","Hydrologic Unit Code","ModRun",0
+"OPEN","huc2",NA,"","Hydrologic Unit Code","ModRun",0
+"OPEN","huc4",NA,"","Hydrologic Unit Code","ModRun",0
+"OPEN","huc8",NA,"","Hydrologic Unit Code","ModRun",0
+"OPEN","shrub","shrub","Sq. Km.","Shrubland","ModRun",0
+"OPEN","grass","grass","Sq. Km.","Grassland","ModRun",0
+"OPEN","Tagsite","Tagsite","","Author identification of suitable calibration sites","ModRun",0
+"OPEN","S_point",NA,"Kg./year","Point source load-reduction factors (scenario predictions)","ModRun",0
+"OPEN","S_ndep",NA,"Kg./year","Atmospheric deposition source load-reduction factors (scenario predictions)","ModRun",0
+"OPEN","S_FARM_N",NA,"Kg./year","Fertilizer  source load-reduction factors (scenario predictions)","ModRun",0
+"OPEN","S_urban",NA,"","Scenario urban source","ModRun",0
+"OPEN","S_crops",NA,"","Scenario crop source","ModRun",0
+"OPEN","S_pasture",NA,"","Scenario pasture source","ModRun",0
+"OPEN","urban_percent",NA,"percent","Urban land use as percent of incremental area","ModRun",0
+"OPEN","agric_percent",NA,"percent","Agricultural land use as percent of incremental area","ModRun",0
+"OPEN","crops_percent",NA,"percent","Crop land use as percent of incremental area","ModRun",0
+"OPEN","pasture_percent",NA,"percent","Pasture land use as percent of incremental area","ModRun",0
+"OPEN","forest_percent",NA,"percent","Forest land use as percent of incremental area","ModRun",0
+"OPEN","shrubgrass_percent",NA,"percent","Shrub-grass land use as percent of incremental area","ModRun",0
+"OPEN","barren_percent",NA,"percent","Barren land use as percent of incremental area","ModRun",0

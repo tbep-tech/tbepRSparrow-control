@@ -680,8 +680,8 @@
   # Install required packages
   #   This is a one time process unless a new version of R is installed or more recent 
   #   packages are found on Cran. Packages previously installed by user will be skipped.
-  if(!"devtools" %in% installed.packages()){install.packages("devtools")}   
-  suppressWarnings(devtools::install_deps(path_master, upgrade = "ask", type="binary"))
+  # if(!"devtools" %in% installed.packages()){install.packages("devtools")}   
+  # suppressWarnings(devtools::install_deps(path_master, upgrade = "ask", type="binary"))
 
   # Load RSPARROW functions (These 2 lines should ALWAYS be run together)
   suppressWarnings(remove(list="runRsparrow"))

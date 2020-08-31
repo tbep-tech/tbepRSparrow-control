@@ -638,7 +638,7 @@
   gis_directoryName<-"gis"
 
   #Select current run_id for the model
-  run_id<-"UpperMissOhio"
+  run_id<-"ModRun"
   
   # Load previous model settings into active control script
   #  Specify name of old model to copy into results directory for edit and run
@@ -673,11 +673,15 @@
   # findCodeStr(path_master,"string name here","all")
   # executionTree(...)
     
+  # Load RSPARROW functions (These 2 lines should ALWAYS be run together)
+  suppressWarnings(remove(list="runRsparrow"))
+  devtools::load_all(path_master,recompile = FALSE)  
+  
   #############################################
   ## Start Model Run
   ## DO NOT MAKE EDITS TO THIS SECTION
   #############################################
-  activeFile<-'results/sparrow_control.R'
+  activeFile<-findScriptName()#'results/sparrow_control.R'
   runRsparrow<-"yes"
   rstudioapi::setCursorPosition(c(1,1,575,1))
   source(paste(path_master,"/R/runRsparrow.R",sep=""))

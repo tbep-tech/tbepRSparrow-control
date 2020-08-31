@@ -399,7 +399,7 @@
   ###################################################################
   
   #Enable the interactive RShiny mapper
-  enable_ShinyApp<-"yes"
+  enable_ShinyApp<-"no"
   
   #Specify preferred Web browser for the RShiny display
   path_shinyBrowser<-"C:/Program Files/Mozilla Firefox/firefox.exe"
@@ -659,7 +659,7 @@
     
 
   # Option to open CSV files from R-session for editing
-  edit_Parameters<-"yes"
+  edit_Parameters<-"no"
   edit_DesignMatrix<-"no"
   edit_dataDictionary<-"no"
     
@@ -672,26 +672,12 @@
   # Independent functions available to R developers (see Chapter 7 of the documentation for explanation)
   # findCodeStr(path_master,"string name here","all")
   # executionTree(...)
-
-  #####################################################
-  ### 12. INSTALLATION AND UPDATING OF R LIBRARIES ####
-  #####################################################
-
-  # Install required packages
-  #   This is a one time process unless a new version of R is installed or more recent 
-  #   packages are found on Cran. Packages previously installed by user will be skipped.
-  if(!"devtools" %in% installed.packages()){install.packages("devtools")}   
-  suppressWarnings(devtools::install_deps(path_master, upgrade = "ask", type="binary"))
-
-  # Load RSPARROW functions (These 2 lines should ALWAYS be run together)
-  suppressWarnings(remove(list="runRsparrow"))
-  devtools::load_all(path_master,recompile = FALSE)  
     
   #############################################
   ## Start Model Run
   ## DO NOT MAKE EDITS TO THIS SECTION
   #############################################
-  activeFile<-findScriptName() #get activeFile Name
+  activeFile<-'results/sparrow_control.R'#findScriptName() #get activeFile Name
   runRsparrow<-"yes"
   rstudioapi::setCursorPosition(c(1,1,575,1))
   source(paste(path_master,"/R/runRsparrow.R",sep=""))

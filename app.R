@@ -322,125 +322,248 @@ shinyApp(  ui=shinyUI(
                          selectInput('add_vars', 'add_vars', choices = c('huc2', 'huc4'), selectize = T, selected = NULL, multiple = T),
                          
                          h4('8. DIAGNOSTIC PLOTS AND MAPS'), 
+                         p('Shape file input/output and geographic coordinates'),
+                         p('Identify the stream reach shape file and "waterid" common variable in the shape file'),
+                         textInput('lineShapeName', 'lineShapeName', value = "ccLinesMRB3"),
+                         textInput('lineWaterid', 'lineWaterid', "MRB_ID"),
+                         p('Identify the stream catchment polygon shape file and "waterid" common variable in the shape file'),
+                         textInput('polyShapeName', 'polyShapeName', value ="mrb3_cats_usonly_withdata_tn"),
+                         textInput('polyWaterid', 'polyWaterid', value = "MRB_ID"),
+                         p('Identify optional geospatial shape file for overlay of lines on stream/catchment maps'),
+                         textInput('LineShapeGeo', 'LineShapeGeo', value = "states"),
+                         p('Identify the desired Coordinate Reference System (CRS) mapping transform for geographic coordinates (latitude-longitude)'),
+                         textInput('CRStext', 'CRStext', value = "+proj=longlat +datum=NAD83"),
+                         p('Indicate whether shape files are to be converted to binary to reduce execution times'),
+                         selectInput('if_create_binary_maps', 'if_create_binary_maps', choices = c('yes', 'no'), selected = "no"),
+                         p('Convert shape files to binary'),
+                         selectInput('convertShapeToBinary.list', 'convertShapeToBinary.list', selected = c("lineShapeName","polyShapeName","LineShapeGeo"), choices = c("lineShapeName","polyShapeName","LineShapeGeo"), multiple = T, selectize = T),
+                         p('Select ERSI shape file output for streams, catchments, residuals, site attributes'),
+                         selectizeInput('outputESRImaps', 'outputESRImaps', selected = 'no, no, no, no', choices = c('yes, yes, yes, yes', 'no, no, no, no'), multiple = F, options = list(create = TRUE)),
+                         p('Specify the geographic units minimum/maximum limits for mapping and prediction maps. If set to NA (missing), limits will be automatically determined from the monitoring site values.'),
+                         textInput('lat_limit', 'lat_limit', value = '35,50'),
+                         textInput('lon_limit', 'lon_limit', value = '-105,-70'),
+                         p('Maps of model predictions and dataDictionary variables: Identify list of load and yield predictions for mapping to output PDF file (enter NA for none). Any variables listed in the data-dictionary are available for mapping by streams or catchments. Note: To map model predictions, then "if_predict" must = "yes" or predictions must have been previously executed.'),
+                         selectInput('master_map_list', 'master_map_list', selected = 'pload_total', selectize = T, multiple = T, choices =  c("pload_total","se_pload_total","ci_pload_total", "deliv_frac","demtarea","hydseq", "yield_total","yield_inc","share_total_ndep","share_inc_ndep")),
+                         p('Identify type of map(s) to output to PDF file from "stream","catchment", or "both"'), 
+                         selectInput('output_map_type', 'output_map_type', selected = "stream", choices = c('stream', 'catchment', 'both')),
+                         p('Map display settings for model predictions or dataDictionary variables'),
+                         numericInput('predictionTitleSize', 'predictionTitleSize', value = 16),
+                         numericInput('predictionLegendSize', 'predictionLegendSize', value = 0.5), 
+                         textInput('predictionLegendBackground', 'predictionLegendBackground', value = "white"), 
+                         textInput('predictionMapColors', 'predictionMapColors', value = "blue, dark green, gold, red, dark red"), 
+                         numericInput('predictionClassRounding', 'predictionClassRounding', value = 3), 
+                         textInput('predictionMapBackground', 'predictionMapBackground', value = "white"), 
+                         numericInput('lineWidth' , 'lineWidth', value = 0.5),
+                         p('Model diagnostics:  Station attribute maps, model plots, residual maps'), 
+                         p('SiteAttribute maps - Identify site attributes to map. Note that any variables in the dataDictionary.csv can be mapped.'),
+                         p('Example site attribute R statements in the "userModifyData.R" subroutine:'), 
+                         HTML('
+                           <ul>
+                              <li>meanload <- depvar</li>
+                              <li>meanyield <- depvar / demtarea</li>
+                              <li>meanconc <- depvar/meanq*ConcFactor</li>
+                              <li>meanloadSE <- depvar_se/depvar*100</li>
+                            </ul>'),
+                         selectInput('map_siteAttributes.list', 'map_siteAttributes.list', choices = c("meanload","meanyield","meanconc","meanloadSE"), 
+                                     selected = c("meanload","meanyield","meanconc","meanloadSE"), selectize = T, multiple = T), 
+                         numericInput('siteAttrTitleSize', 'siteAttrTitleSize', value = 16), 
+                         numericInput('siteAttrLegendSize', 'siteAttrLegendSize', value = 0.5), 
+                         selectInput('siteAttrColors', 'siteAttrColors', choices = c("blue","green4","yellow","orange","red"), 
+                                     selected = c("blue","green4","yellow","orange","red"), multiple = T, selectize = T), 
+                         numericInput('siteAttrClassRounding', 'siteAttrClassRounding', value = 2), 
+                         numericInput('siteAttr_mapPointStyle', 'siteAttr_mapPointStyle', value = 16),
+                         numericInput('siteAttr_mapPointSize', 'siteAttr_mapPointSize', value = 2),
+                         textInput('siteAttrMapBackground', 'siteAttrMapBackground', value = "white"), 
+                         p('Diagnostic plots and residual maps from the model estimation'), 
+                         p('Diagnostic plot settings'), 
+                         numericInput('diagnosticPlotPointSize', 'diagnosticPlotPointSize', value = 0.4),
+                         numericInput('diagnosticPlotPointStyle', 'diagnosticPlotPointStyle', value = 1), 
+                         p('Residual maps'), 
+                         p('specify breakpoints for mapping of residuals, if residual_map_breakpoints set to NA, then breakpoint defaults will be applied. Breakpoint defaults are c(-2.5,-0.75,-0.25,0,0.25,0.75,2.5) and must have a length of 7 and be centered around 0.'), 
+                         textInput('residual_map_breakpoints', 'residual_map_breakpoints', value = '-2.5,-1.0,-0.5,0,0.5,1.0,2.5'),
+                         textInput('ratio_map_breakpoints', 'ratio_map_breakpoints', value = '0.3,0.5,0.8,1,1.25,2,3.3'), 
+                         numericInput('residualTitleSize', 'residualTitleSize', value = 1), 
+                         numericInput('residualLegendSize', 'residualLegendSize', value = 1), 
+                         p('ResidualColors must be length=8 corresponding to residual_map_breakpoints'), 
+                         textInput('residualColors', 'residualColors', value = 'red, red, gold, gold, dark green, dark green, blue, blue'), 
+                         p('residualPointStyle must be length=8 corresponding to residual_map_breakpoints. 2 = open upward triangle, 6 = open downward triangle, 1 = open circle'), 
+                         textInput('residualPointStyle', 'residualPointStyle', value = '2, 2, 1, 1, 1, 1, 6, 6'),    
+                         p('residualPointSize_breakpoints must be length=8 corresponding to breakpoints'),
+                         textInput('residualPointSize_breakpoints', 'residualPointSize_breakpoints', value = '0.75, 0.5, 0.4, 0.25, 0.25, 0.4, 0.5, 0.75'), 
+                         p('residualPointSize_factor causes symbol size to increase or decrease, this scales all point sizes in residualPointSize_breakpoints.'), 
+                         numericInput('residualPointSize_factor', 'residualPointSize_factor', value = 1), 
+                         textInput('residualMapBackground', 'residualMapBackground', value = "white"), 
+                         p('Enable plotly interactive displays for maps (interactive plots are automatic)'), 
+                         selectInput('enable_plotlyMaps', 'enable_plotlyMaps', choices = c('yes', 'no'), selected = "yes"),
+                         selectInput('add_plotlyVars', 'add_plotlyVars', choices = c("waterid","rchname","staid"), 
+                                     selected = c("waterid","rchname","staid"), multiple = T, selectize = T), 
+                         selectInput('showPlotGrid', 'showPlotGrid', choices = c('yes', 'no'), selected = "no"), 
+
+                         h4('9. RSHINY INTERACTIVE DECISION SUPPORT SYSTEM (DSS) MAPPER'),
                          
-                         # p('Shape file input/output and geographic coordinates'),
+                         # #Enable the interactive RShiny mapper
+                         # enable_ShinyApp<-"no"
                          # 
-                         # p('Identify the stream reach shape file and "waterid" common variable in the shape file'),
-                         # textInput('lineShapeName', 'lineShapeName', value = "ccLinesMRB3"), 
-                         # textInput('lineWaterid', 'lineWaterid', "MRB_ID"),
+                         # #Specify preferred Web browser for the RShiny display
+                         # path_shinyBrowser<-"C:/Program Files/Mozilla Firefox/firefox.exe"
+                         # path_shinyBrowser<-"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+                         # path_shinyBrowser<-"C:/Windows/SystemApps/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/MicrosoftEdge.exe"
+                         # path_shinyBrowser <- NA      # user's default browser
+                         # path_shinyBrowser<-"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
                          # 
-                         # p('Identify the stream catchment polygon shape file and "waterid" common variable in the shape file'),
-                         # textInput('polyShapeName', 'polyShapeName', value ="mrb3_cats_usonly_withdata_tn"), 
-                         # textInput('polyWaterid', 'polyWaterid', value = "MRB_ID"),
+                         # # R Shiny can be enabled from RStudio in a specified browser (e.g., Chrome) for a previously 
+                         # #   executed model by running the following function in the Console window:
+                         # # runBatchShiny("C:/UserTutorial/results/Model6",
+                         # #              path_shinyBrowser ="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" )
                          # 
-                         # p('Identify optional geospatial shape file for overlay of lines on stream/catchment maps')
-                         # textInput('LineShapeGeo', 'LineShapeGeo', value = "states"),
+                         # ############################################################
                          # 
-                         # p('Identify the desired Coordinate Reference System (CRS) mapping transform for geographic coordinates (latitude-longitude)')
-                         # textInput('CRStext', 'CRStext', value = "+proj=longlat +datum=NAD83"), 
+                         # # Simulation of source-change management scenarios in the RShiny mapper
                          # 
-                         # p('Indicate whether shape files are to be converted to binary to reduce execution times'), 
-                         # selectInput('if_create_binary_maps', 'if_create_binary_maps', choices = c('yes', 'no'), selected = "no"),
+                         # #  NOTE: Requires prior execution of the model estimation ('if_estimate')
+                         # #        and standard predictions ('if_predict'). 
                          # 
-                         # p('Convert shape files to binary'),
-                         # selectInput('convertShapeToBinary.list', 'convertShapeToBinary.list', selected = c("lineShapeName","polyShapeName","LineShapeGeo"), choices = c("lineShapeName","polyShapeName","LineShapeGeo"), multiple = T, selectize = T), 
+                         # #  Scenarios can be executed using the R Shiny interactive mapper using the
+                         # #    control setting 'enable_ShinyApp <-"yes"'
                          # 
-                         # p('Select ERSI shape file output for streams, catchments, residuals, site attributes'),
-                         # outputESRImaps <-  c("no","no","no","no")   #  c("yes","yes","yes","yes") 
+                         # ###############################################
                          # 
-                         # # Specify the geographic units minimum/maximum limits for mapping and prediction maps
-                         # # If set to NA (missing), limits will be automatically determined from the monitoring site values
-                         # lat_limit <- c(35,50)
-                         # lon_limit <- c(-105,-70)
+                         # # Identify the locations for applying scenarios
+                         # #    "none", "all reaches", "selected reaches"
+                         # select_scenarioReachAreas <- "all reaches"
+                         # select_scenarioReachAreas <- "selected reaches"
+                         # select_scenarioReachAreas <- "none"     # do not execute scenarios
                          # 
-                         # ####################################################
-                         # # Maps of model predictions and dataDictionary variables
+                         # # Indicate the watershed locations where the scenarios will be applied
+                         # #   to either "all reaches" or "selected reaches".
+                         # select_targetReachWatersheds <- NA      # Execute the scenarios for all reaches in the
+                         # # modeled spatial domain (i.e., above the user-defined
+                         # # terminal reaches)
+                         # select_targetReachWatersheds <- 15531   # Execute for a single watershed inclusive of 
+                         # # this watershed outlet reach ('waterid' system
+                         # # variable) and all upstream reaches
+                         # select_targetReachWatersheds <- c(15531,14899,1332)   # Execute for multiple watersheds 
+                         # # inclusive of these watershed outlet reaches
+                         # # ('waterid' system variable) and all upstreams
+                         # # reaches
                          # 
-                         # # Identify list of load and yield predictions for mapping to output PDF file (enter NA for none)
-                         # # Any variables listed in the data-dictionary are available for mapping by streams or catchments
-                         # # Note: To map model predictions, then 'if_predict' must = "yes" or predictions must have been 
-                         # #       previouly executed
+                         # ###############################################
                          # 
-                         # master_map_list <- c("pload_total","se_pload_total","ci_pload_total",
-                         #                      "deliv_frac","demtarea","hydseq",
-                         #                      "yield_total","yield_inc","share_total_ndep","share_inc_ndep")
-                         # master_map_list <- NA
-                         # master_map_list <- c("pload_total")
+                         # # Set scenario source conditions for "all reaches" in user-defined watersheds
                          # 
-                         # #Identify type of map(s) to output to PDF file from "stream","catchment", or "both"
-                         # output_map_type<-c("stream")
+                         # # Settings applicable to select_scenarioReachAreas<-"all reaches" option.
+                         # # Source changes are applied to "all reaches" in the user-defined watersheds
+                         # 
+                         # # List the source variables evaluated in the change scenarios.
+                         # scenario_sources <- NA
+                         # scenario_sources <- c("point","ndep","crops")  
+                         # 
+                         # # For land-use 'scenario_sources' with areal units, specify a land-use source in the 
+                         # # model to which a complimentary area conversion is applied that is equal to the 
+                         # # change in area of the `scenario_source` variable. Note that the converted source 
+                         # # variable must differ from those that appear in 'scenario_sources' setting. 
+                         # landuseConversion<-c(NA, NA,"forest") # convert crop area to forested area
+                         # landuseConversion<-NA    # option if no land-use variables appear in 
+                         # # 'scenario_source' setting
+                         # 
+                         # # Source-adjustment factors (increase or decrease) applied to "all reaches" 
+                         # #  in the user-specified watersheds. Enter a factor of 0.1 or 1.1 to obtain a 10% 
+                         # #  reduction or increase in a source, respectively.
+                         # scenario_factors <- NA
+                         # scenario_factors <- c(0.20,1.1,0.25)   # order consistent with order of 
+                         # #  the 'scenario_sources'
+                         # 
+                         # ###############################################
+                         # 
+                         # # Set scenario source conditions for "selected reaches" in user-defined watersheds
+                         # 
+                         # # Settings applicable to select_scenarioReachAreas<-"selected reaches" option.
+                         # # Source changes applied to "selected reaches" in the user-defined watersheds.
+                         # 
+                         # # (A) Specify the source-adjustment factors in the 'userModifyData.R' 
+                         # #      script for each of the "scenario_source" variables. 
+                         # #      The variable names for the factors are defined by adding the 
+                         # #      prefix "S_" to the *sparrowNames* variable name for each source.
+                         # #      In the example, point sources are reduced by 20% and atmospheric
+                         # #      deposition is increased by 10% in Ohio Basin (huc2=5) and cropland
+                         # #      area is reduced by 25% in the Upper Mississippi Basin: 
+                         # #         S_point <- ifelse(huc2 == 5,0.2,1)
+                         # #         S_atmdep <- ifelse(huc2 == 5,1.1,1)
+                         # #         S_crops <- ifelse(huc2 == 7,0.25,1)
+                         # 
+                         # # (B) Specify the land-use types used for land conversion in the 'userModifyData.R' 
+                         # #      script, in cases where the scenario sources are land use/cover variables, 
+                         # #      expressed in areal units. The variable names for the conversion types are 
+                         # #      defined by adding the suffix "_LC" to the *sparrowNames* variable name for
+                         # #      each land-use area source.   
+                         # #      In the example, cropland area is converted to pasture area in reaches of
+                         # #      the Upper Mississippi River Basin (huc2=7), and "NA" is assumed for the 
+                         # #      land conversion for the mass-based point sources and atmospheric sources:
+                         # #         S_crops_LC <- ifelse(huc2==7,"pasture",NA)
+                         # 
+                         # # (C) Add the variable names for the source-adjustment factors (e.g., "S_crops")
+                         # #      and the conversion land-use type (e.g., "S_crops_LC") as 'sparrowNames' 
+                         # #      in the dataDictionary.csv file, with an OPEN 'varType'.
+                         # 
+                         # #   dataDictionary.csv file:
+                         # #        varType   sparrowNames      data1UserNames        varunits    explanation
+                         # #         OPEN     S_crops                NA
+                         # #         OPEN     S_crops_LC             NA
                          # 
                          # 
-                         # #map display settings for model predictions or dataDictionary variables
-                         # predictionTitleSize<-16
-                         # predictionLegendSize<-0.5
-                         # predictionLegendBackground<-"white"
-                         # predictionMapColors<-c("blue","dark green","gold","red","dark red") #length sets number of breakpoints
-                         # predictionClassRounding<-3
-                         # predictionMapBackground<-"white"
-                         # lineWidth<-0.5    #for stream maps 
+                         # ###############################################
                          # 
-                         # ####################################################
-                         # # Model diagnostics:  Station attribute maps, model plots, residual maps
+                         # # Specify the scenario output settings
                          # 
-                         # ####################
-                         # # SiteAttribute maps - Identify site attributes to map
-                         # #  Note that any variables in the dataDictionary.csv can be mapped
-                         # map_siteAttributes.list<-c("meanload","meanyield","meanconc","meanloadSE")  #Identify site attributes to map
-                         # # Example site attribute R statements in the 'userModifyData.R' subroutine:
-                         # # meanload <- depvar
-                         # # meanyield <- depvar / demtarea
-                         # # meanconc <- depvar/meanq*ConcFactor
-                         # # meanloadSE <- depvar_se/depvar*100
+                         # # Set scenario name; this becomes the directory and file name for all scenario output
+                         # #  NOTE: only one scenario can be run at a time; avoid using "/" or "\" for name
+                         # scenario_name<-"scenario1"
                          # 
-                         # siteAttrTitleSize<-16
-                         # siteAttrLegendSize<-0.5
-                         # #siteAttrColors<-c("blue","green4","yellow","orange","red","darkred") #length sets number of breakpoints
-                         # siteAttrColors<-c("blue","green4","yellow","orange","red")
-                         # siteAttrClassRounding<-2
-                         # siteAttr_mapPointStyle<-16  #pch=16
-                         # siteAttr_mapPointSize<-2    # sets point size scaling 
-                         # siteAttrMapBackground<-"white"
+                         # # specify the colors for six classes for mapped predictions
+                         # scenarioMapColors<-c("light blue","blue","dark green","gold","red","dark red")
                          # 
                          # 
-                         # ####################
-                         # # Diagnostic plots and residual maps from the model estimation
+                         # # Identify prediction variables to display a stream map of the effects of the 
+                         # #  scenario on water-quality loads. Options include:
+                         # #
+                         # # RELATIVE METRICS:
+                         # # Ratio of the changed load (resulting from the scenario) to the baseline load 
+                         # # associated with the original (unchanged) mass or area of the model sources. 
+                         # #  Metric names and explanations:
+                         # #   ratio_total                Ratio for the total load (a measure of the watershed-
+                         # #                               scale effect of the change scenario)
+                         # #   ratio_inc                  Ratio for the total incremental load delivered to 
+                         # #                               the reach (a measure of the "local" effect of the
+                         # #                               change scenario)
+                         # # ABSOLUTE METRICS:
+                         # # Load prediction names and explanations
+                         # #   pload_total                Total load (fully decayed)
+                         # #   pload_(sources)            Total source load (fully decayed)
+                         # #   pload_nd_total             Total load delivered to streams (no stream decay)
+                         # #   pload_nd_(sources)         Total source load delivered to streams (no stream decay)
+                         # #   pload_inc                  Total incremental load delivered to reach 
+                         # #                                 (with 1/2 of reach decay)
+                         # #   pload_inc_(sources)        Source incremental load delivered to reach 
+                         # #                                 (with 1/2 of reach decay)
+                         # #   pload_inc_deliv            Total incremental load delivered to terminal reach
+                         # #   pload_inc_(sources)_deliv  Total incremental source load delivered to terminal reach
+                         # #   share_total_(sources)      Source shares for total load (percent)
+                         # #   share_inc_(sources)        Source shares for incremental load (percent)
                          # 
-                         # # Diagnostic plot settings
-                         # diagnosticPlotPointSize <- 0.4
-                         # diagnosticPlotPointStyle <- 1
-                         # 
-                         # #Residual maps
-                         # #specify breakpoints for mapping of residuals
-                         # #if residual_map_breakpoints set to NA, then breakpoint defaults will be applied
-                         # #   breakpoint defaults are c(-2.5,-0.75,-0.25,0,0.25,0.75,2.5)
-                         # #   breakpoints must have a length of 7 and be centered around 0
-                         # residual_map_breakpoints<-c(-2.5,-1.0,-0.5,0,0.5,1.0,2.5)
-                         # # For obs/pred ratio maps must have length=7
-                         # ratio_map_breakpoints<-c(0.3,0.5,0.8,1,1.25,2,3.3) 
-                         # residualTitleSize<-1
-                         # residualLegendSize<-1
-                         # #residualColors must be length=8 corresponding to residual_map_breakpoints
-                         # residualColors<-c("red","red","gold","gold","dark green","dark green","blue","blue") 
-                         # residualPointStyle<- c(2,2,1,1,1,1,6,6)    #must be length=8 corresponding to residual_map_breakpoints
-                         # # 2 = open upward triangle
-                         # # 6 = open downward triangle
-                         # # 1 = open circle
-                         # #residualPointSize_breakpoints must be length=8 corresponding to breakpoints
-                         # residualPointSize_breakpoints<-c(0.75,0.5,0.4,0.25,0.25,0.4,0.5,0.75) 
-                         # 
-                         # #residualPointSize_factor causes symbol size to increase or decrease 
-                         # #  This scales all point sizes in residualPointSize_breakpoints
-                         # residualPointSize_factor<-1 
-                         # residualMapBackground<-"white"
-                         # 
-                         # ####################################################
-                         # #Enable plotly interactive displays for maps (interactive plots are automatic)
-                         # enable_plotlyMaps<-"yes"
-                         # add_plotlyVars<-c("waterid","rchname","staid") 
-                         # showPlotGrid<-"no"
-                         # 
-                         h4('9. RShiny interactive Decision Support System (DSS) mapper'), 
+                         # # Yield prediction names and explanations
+                         # #   Concentration              Flow-weighted concentration based on decayed total load 
+                         # #                                 and mean discharge
+                         # #   yield_total                Total yield (fully decayed)
+                         # #   yield_(sources)            Total source yield (fully decayed)
+                         # #   yield_inc                  Total incremental yield delivered to reach 
+                         # #                                 (with 1/2 of reach decay)
+                         # #   yield_inc_(sources)        Total incremental source yield delivered to reach 
+                         # #                                 (with 1/2 of reach decay)
+                         # #   yield_inc_deliv            Total incremental yield delivered to terminal reach
+                         # #   yield_inc_(sources)_deliv  Total incremental source yield delivered to 
+                         # #                                 terminal reach
+                         # #
+                         # scenario_map_list <- c("ratio_total","ratio_inc","pload_total","concentration")
                          
                          h4('10. MODEL PREDICTION UNCERTAINTIES'), 
                          

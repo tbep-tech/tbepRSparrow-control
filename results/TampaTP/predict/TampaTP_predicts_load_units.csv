@@ -1,0 +1,57 @@
+Prediction Metric Name,Units,Metric Explanation
+waterid,Reach ID Number,Reach ID Number
+pload_total,kg/year,Total load (fully decayed)
+pload_FacWW_P,kg/year,Total source load (fully decayed)
+pload_FacPmine,kg/year,Total source load (fully decayed)
+pload_ManureP_Seas,kg/year,Total source load (fully decayed)
+pload_FertP_Seas,kg/year,Total source load (fully decayed)
+pload_Pmines_v17,kg/year,Total source load (fully decayed)
+pload_GeolP,kg/year,Total source load (fully decayed)
+pload_urban_Seas,kg/year,Total source load (fully decayed)
+mpload_total,kg/year,Monitoring-adjusted (conditional) total load (fully decayed)
+mpload_FacWW_P,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_FacPmine,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_ManureP_Seas,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_FertP_Seas,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_Pmines_v17,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_GeolP,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+mpload_urban_Seas,kg/year,Monitoring-adjusted (conditional) total source load (fully decayed)
+pload_nd_total,kg/year,Total load delivered to streams (no stream decay)
+pload_nd_FacWW_P,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_FacPmine,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_ManureP_Seas,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_FertP_Seas,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_Pmines_v17,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_GeolP,kg/year,Total source load delivered to streams (no stream decay)
+pload_nd_urban_Seas,kg/year,Total source load delivered to streams (no stream decay)
+pload_inc,kg/year,Total incremental load delivered to reach (with one-half of reach decay)
+pload_inc_FacWW_P,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_FacPmine,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_ManureP_Seas,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_FertP_Seas,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_Pmines_v17,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_GeolP,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+pload_inc_urban_Seas,kg/year,Total incremental source load delivered to reach (with one-half of reach decay)
+deliv_frac,Fraction,Fraction of total load delivered to terminal reach
+pload_inc_deliv,kg/year,Total incremental load delivered to terminal reach
+pload_inc_FacWW_P_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_FacPmine_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_ManureP_Seas_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_FertP_Seas_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_Pmines_v17_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_GeolP_deliv,kg/year,Total incremental source load delivered to terminal reach
+pload_inc_urban_Seas_deliv,kg/year,Total incremental source load delivered to terminal reach
+share_total_FacWW_P,Percent,Source shares for total load
+share_total_FacPmine,Percent,Source shares for total load
+share_total_ManureP_Seas,Percent,Source shares for total load
+share_total_FertP_Seas,Percent,Source shares for total load
+share_total_Pmines_v17,Percent,Source shares for total load
+share_total_GeolP,Percent,Source shares for total load
+share_total_urban_Seas,Percent,Source shares for total load
+share_inc_FacWW_P,Percent,Source shares for incremental load
+share_inc_FacPmine,Percent,Source shares for incremental load
+share_inc_ManureP_Seas,Percent,Source shares for incremental load
+share_inc_FertP_Seas,Percent,Source shares for incremental load
+share_inc_Pmines_v17,Percent,Source shares for incremental load
+share_inc_GeolP,Percent,Source shares for incremental load
+share_inc_urban_Seas,Percent,Source shares for incremental load

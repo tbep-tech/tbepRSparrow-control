@@ -1,0 +1,35 @@
+Prediction Metric Name,Units,Metric Explanation
+waterid,Reach ID Number,Reach ID Number
+concentration,mg/L,Flow-weighted concentration based on decayed total load and mean discharge
+yield_total,kg/ha/year,Total yield (fully decayed)
+yield_FacWW_P,kg/ha/year,Total source yield (fully decayed)
+yield_FacPmine,kg/ha/year,Total source yield (fully decayed)
+yield_ManureP_Seas,kg/ha/year,Total source yield (fully decayed)
+yield_FertP_Seas,kg/ha/year,Total source yield (fully decayed)
+yield_Pmines_v17,kg/ha/year,Total source yield (fully decayed)
+yield_GeolP,kg/ha/year,Total source yield (fully decayed)
+yield_urban_Seas,kg/ha/year,Total source yield (fully decayed)
+myield_total,kg/ha/year,Monitoring-adjusted (conditional) total yield (fully decayed)
+myield_FacWW_P,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_FacPmine,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_ManureP_Seas,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_FertP_Seas,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_Pmines_v17,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_GeolP,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+myield_urban_Seas,kg/ha/year,Monitoring-adjusted (conditional) total source yield (fully decayed)
+yield_inc,kg/ha/year,Total incremental yield delivered to reach (with one-half of reach decay)
+yield_inc_FacWW_P,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_FacPmine,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_ManureP_Seas,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_FertP_Seas,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_Pmines_v17,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_GeolP,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_urban_Seas,kg/ha/year,Total incremental source yield delivered to reach (with one-half of reach decay)
+yield_inc_deliv,kg/ha/year,Total incremental yield delivered to terminal reach
+yield_inc_FacWW_P_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_FacPmine_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_ManureP_Seas_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_FertP_Seas_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_Pmines_v17_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_GeolP_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach
+yield_inc_urban_Seas_deliv,kg/ha/year,Total incremental source yield delivered to terminal reach

@@ -1,0 +1,27 @@
+Prediction Metric Name,Units
+waterid,Reach ID Number
+concentration,mg/L
+yield_total,kg/ha/year
+yield_FacWW_P,kg/ha/year
+yield_FacPmine,kg/ha/year
+yield_ManureP_Seas,kg/ha/year
+yield_FertP_Seas,kg/ha/year
+yield_Pmines_v17,kg/ha/year
+yield_GeolP,kg/ha/year
+yield_urban_Seas,kg/ha/year
+yield_inc,kg/ha/year
+yield_inc_FacWW_P,kg/ha/year
+yield_inc_FacPmine,kg/ha/year
+yield_inc_ManureP_Seas,kg/ha/year
+yield_inc_FertP_Seas,kg/ha/year
+yield_inc_Pmines_v17,kg/ha/year
+yield_inc_GeolP,kg/ha/year
+yield_inc_urban_Seas,kg/ha/year
+yield_inc_deliv,kg/ha/year
+yield_inc_FacWW_P_deliv,kg/ha/year
+yield_inc_FacPmine_deliv,kg/ha/year
+yield_inc_ManureP_Seas_deliv,kg/ha/year
+yield_inc_FertP_Seas_deliv,kg/ha/year
+yield_inc_Pmines_v17_deliv,kg/ha/year
+yield_inc_GeolP_deliv,kg/ha/year
+yield_inc_urban_Seas_deliv,kg/ha/year

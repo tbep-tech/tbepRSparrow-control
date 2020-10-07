@@ -4,8 +4,7 @@
 
 # Authors:  R. Alexander, USGS, Reston, VA (ralex@usgs.gov)
 #           L. Gorman-Sanisaca, USGS, Baltimore, MD (lgormansanisaca@usgs.gov)
-# Modified: 07-07-2020
-# RSPARROW Version 1.1.0
+# Modified: 09-30-2019
 # SPARROW URL:  http://water.usgs.gov/nawqa/sparrow/
 
  ####################################################################
@@ -38,7 +37,7 @@
    #  with no extension created in previous RSPARROW run).
    #Binary file will be automatically created if file type is not binary 
    #  for fast import in subsequent runs.
-   input_data_fileName <- "data1.csv"
+   input_data_fileName <- "tampa_data1.csv"
      
    # Loads previous binary data input file "(input_data_fileName)_priorImport"      
    #  from results directory. This setting will override run_dataImport.
@@ -71,6 +70,7 @@
   #calculate_reach_attribute_list <- c("hydseq","headflag","demtarea")  # calculate for these variables
   #calculate_reach_attribute_list <- c("hydseq")  # calculate for these variables
   calculate_reach_attribute_list <- NA    # no calculation is requested
+  calculate_reach_attribute_list<- c("headflag")
   
   # Specify any additional DATA1 variables (and conditions) to be used to filter reaches:
   #  Default conditions are FNODE > 0 and TNODE > 0
@@ -161,9 +161,9 @@
   #               reciprocal of the variance proportional to user-selected variables
   NLLS_weights <- "default"
 
-  #####################################
-  ### 5. MODEL SPATIAL DIAGNOSTICS ####
-  #####################################
+  #############################
+  ### 5. MODEL DIAGNOSTICS ####
+  #############################
 
   # Specifiy if the spatial autocorrelation diagnostic graphics for Moran's I test are to be output 
   if_spatialAutoCorr <- "no"
@@ -178,14 +178,14 @@
   #                      (2) spatial autocorrelation (only the first variable is used)
   #                      (3) sensitivities (only the first variable is used)
   classvar<-NA  # for NA, total drainage area is used as the default classification variable
-  classvar <- c("huc2","huc4")
+  #classvar <- c("huc8")
 
   # Specify non-contiguous land use classification variables for boxplots of observed-predicted ratios by decile class
   #  Note that the land use variables listed for "class_landuse" should be defined in areal units (e.g., sq. km) 
   #  in the data1.csv file or by defining the variables in the userModifyData.R subroutine
   #  In the RSPARROW diagnostic output plots, land use is expressed as a percentage of the incremental area between monitoring sites
   class_landuse<-NA   # for NA, total drainage area is used as the default classification variable
-  class_landuse <- c("forest","agric","crops","pasture","urban","shrubgrass")
+  #class_landuse <- c("forest","agric","crops","pasture","urban","shrubgrass")
 
   # Produces a summary table of reach predictions of the total yield for watersheds 
   #  with relatively uniform land use. 
@@ -267,7 +267,7 @@
   
   #Specify additional variables to include in prediction, yield, and residuals csv files
   add_vars<-NA
-  add_vars<-c("huc2","huc4")
+  add_vars<-c("huc2","huc4","huc8")
 
   #####################################
   ### 8. DIAGNOSTIC PLOTS AND MAPS ####
@@ -276,12 +276,14 @@
   # Shape file input/output and geographic coordinates
   
   # Identify the stream reach shape file and 'waterid' common variable in the shape file
-  lineShapeName <- "ccLinesMRB3" 
-  lineWaterid <- "MRB_ID"
+  lineShapeName <- "ccLinesMRB3_TampaBay____" 
+  lineWaterid <- "waterid"
+  
    
   # Identify the stream catchment polygon shape file and 'waterid' common variable in the shape file
-  polyShapeName <- "mrb3_cats_usonly_withdata_tn"
-  polyWaterid <- "MRB_ID"
+  polyShapeName <- "mrb3_cats_usonly_withdata_tn_TampaBay__"
+  polyWaterid <- "waterid"
+  
   
   # Identify optional geospatial shape file for overlay of lines on stream/catchment maps
   LineShapeGeo <- NA
@@ -292,18 +294,24 @@
   CRStext <- "+proj=longlat +datum=NAD83"
   
   # Indicate whether shape files are to be converted to binary to reduce execution times
-  if_create_binary_maps<-"no"
+  if_create_binary_maps<-"yes"
 
   # Convert shape files to binary 
   convertShapeToBinary.list <- c("lineShapeName","polyShapeName","LineShapeGeo")
+  #convertShapeToBinary.list <- c("lineShapeName","polyShapeName")
+
 
   # Select ERSI shape file output for streams, catchments, residuals, site attributes
   outputESRImaps <-  c("no","no","no","no")   #  c("yes","yes","yes","yes") 
 
+
   # Specify the geographic units minimum/maximum limits for mapping and prediction maps
   # If set to NA (missing), limits will be automatically determined from the monitoring site values
-  lat_limit <- c(35,50)
-  lon_limit <- c(-105,-70)
+  #lat_limit <- c(35,50)
+  #lon_limit <- c(-105,-70)
+  
+  lat_limit <- c(26,29)
+  lon_limit <- c(-83,-81)
   
 
   ####################################################
@@ -314,24 +322,25 @@
   # Note: To map model predictions, then 'if_predict' must = "yes" or predictions must have been 
   #       previouly executed
 
-  master_map_list <- c("pload_total","se_pload_total","ci_pload_total",
+  master_map_list <- c("pload_total",
+  #                       "se_pload_total","ci_pload_total",
       "deliv_frac","demtarea","hydseq",
       "yield_total","yield_inc","share_total_ndep","share_inc_ndep")
-  master_map_list <- NA
-  master_map_list <- c("pload_total")
+  #master_map_list <- NA
   
   #Identify type of map(s) to output to PDF file from "stream","catchment", or "both"
+  output_map_type<-c("both")
   output_map_type<-c("stream")
   
 
   #map display settings for model predictions or dataDictionary variables
-  predictionTitleSize<-16
-  predictionLegendSize<-0.5
+  predictionTitleSize<-1
+  predictionLegendSize<-0.6
   predictionLegendBackground<-"white"
   predictionMapColors<-c("blue","dark green","gold","red","dark red") #length sets number of breakpoints
   predictionClassRounding<-3
   predictionMapBackground<-"white"
-  lineWidth<-0.5    #for stream maps 
+  lineWidth<-0.8 #for stream maps #0.8
 
   ####################################################
   # Model diagnostics:  Station attribute maps, model plots, residual maps
@@ -346,13 +355,13 @@
     # meanconc <- depvar/meanq*ConcFactor
     # meanloadSE <- depvar_se/depvar*100
   
-  siteAttrTitleSize<-16
-  siteAttrLegendSize<-0.5
+  siteAttrTitleSize<-1
+  siteAttrLegendSize<-1
   #siteAttrColors<-c("blue","green4","yellow","orange","red","darkred") #length sets number of breakpoints
   siteAttrColors<-c("blue","green4","yellow","orange","red")
   siteAttrClassRounding<-2
-  siteAttr_mapPointStyle<-16  #pch=16
-  siteAttr_mapPointSize<-2    # sets point size scaling 
+  siteAttr_mapPointStyle<-16 #pch=16
+  siteAttr_mapPointSize<-1 # sets point size scaling 
   siteAttrMapBackground<-"white"
 
 
@@ -387,73 +396,62 @@
   residualPointSize_factor<-1 
   residualMapBackground<-"white"
  
-  ####################################################
   #Enable plotly interactive displays for maps (interactive plots are automatic)
   enable_plotlyMaps<-"yes"
   add_plotlyVars<-c("waterid","rchname","staid") 
   showPlotGrid<-"no"
+  
+  ####################################################
+  #Trigger interactive Rshiny Maps upon completing run
+  enable_ShinyApp<-"yes"
 
-  
-  ###################################################################
-  ### 9. RShiny interactive Decision Support System (DSS) mapper ####
-  ###################################################################
-  
-  #Enable the interactive RShiny mapper
-  enable_ShinyApp<-"no"
-  
   #Specify preferred Web browser for the RShiny display
   path_shinyBrowser<-"C:/Program Files/Mozilla Firefox/firefox.exe"
   path_shinyBrowser<-"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
   path_shinyBrowser<-"C:/Windows/SystemApps/Microsoft.MicrosoftEdge_8wekyb3d8bbwe/MicrosoftEdge.exe"
   path_shinyBrowser <- NA      # user's default browser
-  path_shinyBrowser<-"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+  #path_shinyBrowser<-"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
   
-  # R Shiny can be enabled from RStudio in a specified browser (e.g., Chrome) for a previously 
-  #   executed model by running the following function in the Console window:
-  # runBatchShiny("C:/UserTutorial/results/Model6",
-  #              path_shinyBrowser ="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" )
+  #################################################
+  ### 9. PREDICTION SOURCE-CHANGE SCENARIOS ####
+  #################################################
   
-  ############################################################
-  
-  # Simulation of source-change management scenarios in the RShiny mapper
-
+  # Management source-change scenarios:
   #  NOTE: Requires prior execution of the model estimation ('if_estimate')
   #        and standard predictions ('if_predict'). 
   
   #  Scenarios can be executed using the R Shiny interactive mapper using the
-  #    control setting 'enable_ShinyApp <-"yes"'
+  #    control setting 'enable_interactiveMaps<-"yes"'
   
-  ###############################################
-  
-  # Identify the locations for applying scenarios
+  # Indicate the spatial domain to apply scenario predictions:  
   #    "none", "all reaches", "selected reaches"
   select_scenarioReachAreas <- "all reaches"
-  select_scenarioReachAreas <- "selected reaches"
-  select_scenarioReachAreas <- "none"     # do not execute scenarios
+  #select_scenarioReachAreas <- "selected reaches"
+  #select_scenarioReachAreas <- "none"     # do not execute scenarios
   
   # Indicate the watershed locations where the scenarios will be applied
   #   to either "all reaches" or "selected reaches".
   select_targetReachWatersheds <- NA      # Execute the scenarios for all reaches in the
   # modeled spatial domain (i.e., above the user-defined
   # terminal reaches)
-  select_targetReachWatersheds <- 15531   # Execute for a single watershed inclusive of 
+  #select_targetReachWatersheds <- 15531   # Execute for a single watershed inclusive of 
   # this watershed outlet reach ('waterid' system
   # variable) and all upstream reaches
-  select_targetReachWatersheds <- c(15531,14899,1332)   # Execute for multiple watersheds 
+  #select_targetReachWatersheds <- c(15531,14899,1332)   # Execute for multiple watersheds 
   # inclusive of these watershed outlet reaches
   # ('waterid' system variable) and all upstreams
   # reaches
   
-  ###############################################
   
-  # Set scenario source conditions for "all reaches" in user-defined watersheds
   
   # Settings applicable to select_scenarioReachAreas<-"all reaches" option.
   # Source changes are applied to "all reaches" in the user-defined watersheds
   
   # List the source variables evaluated in the change scenarios.
   scenario_sources <- NA
-  scenario_sources <- c("point","ndep","crops")  
+  scenario_sources <- c("point","ndep","crops")
+  scenario_sources <- c("point","ndep","FARM_N","MANC_N","urban")
+  scenario_sources <- c("FacWW_P","FacPmine","Pmines_v17","urban_Seas","FertP_Seas","ManureP_Seas","GeolP")
   
   # For land-use 'scenario_sources' with areal units, specify a land-use source in the 
   # model to which a complimentary area conversion is applied that is equal to the 
@@ -467,12 +465,10 @@
   #  in the user-specified watersheds. Enter a factor of 0.1 or 1.1 to obtain a 10% 
   #  reduction or increase in a source, respectively.
   scenario_factors <- NA
-  scenario_factors <- c(0.20,1.1,0.25)   # order consistent with order of 
+  scenario_factors <- c(0.20,1.1,0.25) # order consistent with order of 
   #  the 'scenario_sources'
+  scenario_factors <-c(0.2,0.5,1.15,1.0,0.2,0.3,0.4)
   
-  ###############################################
-  
-  # Set scenario source conditions for "selected reaches" in user-defined watersheds
   
   # Settings applicable to select_scenarioReachAreas<-"selected reaches" option.
   # Source changes applied to "selected reaches" in the user-defined watersheds.
@@ -507,12 +503,7 @@
   #         OPEN     S_crops                NA
   #         OPEN     S_crops_LC             NA
   
-  
-  ###############################################
-  
-  # Specify the scenario output settings
-  
-  # Set scenario name; this becomes the directory and file name for all scenario output
+  #Set scenario name; this becomes the directory and file name for all scenario output
   #  NOTE: only one scenario can be run at a time; avoid using "/" or "\" for name
   scenario_name<-"scenario1"
   
@@ -581,7 +572,7 @@
 
   # Specify if bootstrap predictions (mean, SE, confidence intervals) are to be executed
   #  Note: Bias retransformation correction based on parametric bootstrap estimation
-  #        Requires completion of bootstrap estimation  
+  #        Requires completion of bootstrap estimation 
   if_boot_predict <- "no"
 
   # Bootstrap load prediction names and explanations
@@ -630,7 +621,7 @@
   ### 11. DIRECTORY AND MODEL IDENTIFICATION AND CONTROL SCRIPT OPERATIONS ####
   #############################################################################
   
-  path_master <- "../tbepRSparrow"
+  path_master <- '../tbepRSparrow'
   
   #results, data, and gis directories should be in Users Directory
   results_directoryName<-"results"
@@ -638,7 +629,7 @@
   gis_directoryName<-"gis"
 
   #Select current run_id for the model
-  run_id<-"ModRun"
+  run_id<-"TampaTP"
   
   # Load previous model settings into active control script
   #  Specify name of old model to copy into results directory for edit and run
@@ -659,7 +650,7 @@
     
 
   # Option to open CSV files from R-session for editing
-  edit_Parameters<-"no"
+  edit_Parameters<-"yes"
   edit_DesignMatrix<-"no"
   edit_dataDictionary<-"no"
     
@@ -672,7 +663,17 @@
   # Independent functions available to R developers (see Chapter 7 of the documentation for explanation)
   # findCodeStr(path_master,"string name here","all")
   # executionTree(...)
+
+  #########################################################
+  ### 12. INSTALLATION AND VERIFICATION OF R LIBRARIES ####
+  #########################################################
     
+  # Install required packages
+  #   This is a one time process unless a new version of R is installed or more recent 
+  #   packages are found on Cran. Packages previously installed by user will be skipped.
+  if(!"devtools" %in% installed.packages()){install.packages("devtools")}   
+  suppressWarnings(devtools::install_deps(path_master, upgrade = "never", type="binary"))
+  
   # Load RSPARROW functions (These 2 lines should ALWAYS be run together)
   suppressWarnings(remove(list="runRsparrow"))
   devtools::load_all(path_master,recompile = FALSE)  
@@ -681,7 +682,7 @@
   ## Start Model Run
   ## DO NOT MAKE EDITS TO THIS SECTION
   #############################################
-  activeFile<-findScriptName()#'results/sparrow_control.R'
+  activeFile<-findScriptName() #get activeFile Name
   runRsparrow<-"yes"
   rstudioapi::setCursorPosition(c(1,1,575,1))
   source(paste(path_master,"/R/runRsparrow.R",sep=""))

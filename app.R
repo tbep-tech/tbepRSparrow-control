@@ -65,7 +65,7 @@ path_master <- "../tbepRSparrow/"
 devtools::load_all(path_master,recompile = F)
 
 # load existing image
-# load(file = 'shinyimage.RData')
+load(file = 'shinyimage.RData')
 
 for(i in 1:length(shinyimage)) 
   assign(names(shinyimage)[i], shinyimage[[i]])

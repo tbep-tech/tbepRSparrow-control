@@ -1,4 +1,4 @@
-devtools::load_all('./RSPARROW_master')
+devtools::load_all('./RSPARROW_Master')
 
 path_PastResults <- "results/TampaTP_test4"
 path_PastResults<-paste0(path_PastResults,"/maps/shinyArgs")

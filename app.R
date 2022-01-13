@@ -11,6 +11,10 @@ unPackList(lists = list(shinyArgs = shinyArgs),
 unPackList(lists = list(file.output.list = file.output.list),
            parentObj = list(NA)) 
 
+file.output.list$path_user <- getwd()
+file.output.list$path_data <- 'data'
+file.output.list$path_gis <- 'gis'
+file.output.list$path_results <- 'results/TampaTP_test4/'
 
 #trigger shiny
 shinyMap2(

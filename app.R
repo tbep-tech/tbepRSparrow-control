@@ -10,7 +10,7 @@ unPackList(lists = list(file.output.list = file.output.list),
            parentObj = list(NA)) 
 
 #trigger shiny
-shinyMap2(
+RSPARROW::shinyMap2(
   #stream/catchment
   file.output.list,map_uncertainties,BootUncertainties,
   data_names,mapping.input.list,

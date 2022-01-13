@@ -1,4 +1,4 @@
-path_master<-'RSPARROW_master'
+path_master<-'./RSPARROW_master'
 suppressWarnings(remove(list="runRsparrow"))
 devtools::load_all(path_master,recompile = FALSE) 
 

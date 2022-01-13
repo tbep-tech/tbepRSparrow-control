@@ -1,0 +1,203 @@
+                            
+  SPARROW NLLS MODEL SUMMARY
+                           
+  MODEL NAME: TampaTP_test4
+                                                                                                         
+  FILE PATH: C:/proj/rsparrow/Tampa_UserTutorial/results/TampaTP_test4/estimate/TampaTP_test4_summary.txt
+  
+  
+                                                                
+  MODEL ESTIMATION PERFORMANCE (Monitoring-Adjusted Predictions)
+ MOBS NPARM   DF      SSE       MSE      RMSE       RSQ RSQ-ADJUST RSQ-YIELD PERCENT BIAS
+ 1344    14 1330 658.3116 0.4949711 0.7035418 0.8914846   0.890424 0.8021088     3.217614
+                                                      
+  MODEL SIMULATION PERFORMANCE (Simulated Predictions)
+ MOBS NPARM   DF      SSE       MSE      RMSE       RSQ RSQ-ADJUST RSQ-YIELD PERCENT BIAS
+ 1344    14 1330 997.3462 0.7498844 0.8659586 0.8355985  0.8339916 0.7001937     12.70459
+
+   Simulated predictions are computed using mean coefficients from the NLLS model 
+     that was estimated with monitoring-adjusted (conditioned) predictions
+
+                   
+  PARAMETER SUMMARY
+   PARAMETER     ESTIMATE     PARM TYPE EST TYPE  INITIAL VALUE MIN    MAX   DESCRIPTION                       PARAMETER UNITS       
+1  FacWW_P        0.939115812 SOURCE    Estimated  3.00              0 10000 Municipal/industrial point source fraction,dimensionless
+2  FacPmine       0.020672026 SOURCE    Estimated  1.00              0 10000 FacPmine                                                
+3  ManureP_Seas   0.014016666 SOURCE    Estimated  1.00              0 10000 Livestock manure N                                      
+4  FertP_Seas     0.088133748 SOURCE    Estimated  0.10              0 10000 Fertilizer N use                                        
+5  Pmines_v17     0.030144342 SOURCE    Estimated  0.05              0 10000 Pmines_v17                                              
+6  GeolP          0.001439309 SOURCE    Estimated  0.05              0 10000 GeolP                                                   
+7  urban_Seas    11.187165456 SOURCE    Estimated 40.00              0 10000 Urban lands                       kg/km2/year           
+8  logAirTemp    -1.319290180 DELIVF    Estimated -1.00         -10000 10000 logAirTemp                                              
+9  logPPT         1.472102202 DELIVF    Estimated  1.00         -10000 10000 logppt                                                  
+10 PrevSurfSoMoi  0.526755561 DELIVF    Estimated  0.40         -10000 10000 PrevSurfSoMoi                                           
+11 PrevET        -0.310575024 DELIVF    Estimated -0.30         -10000 10000 PrevET                                                  
+12 PrevEVIMean    4.250162473 DELIVF    Estimated  4.00         -10000 10000 PrevEVIMean                                             
+13 lkfactup       2.053538638 DELIVF    Estimated  2.00         -10000 10000 lkfactup                                                
+14 rchtot         0.510385956 STRM      Estimated  0.80              0 10000 contrchdecay_RRLite                                     
+                     
+  PARAMETER ESTIMATES
+   PARAMETER     PARM TYPE ESTIMATE     SE(Jcb)     T(Jcb)     P-VALUE(Jcb) VIF       DESCRIPTION                       PARAMETER UNITS       
+1  FacWW_P       SOURCE     0.939115812 0.190896533  4.9195017 9.759788e-07  1.228566 Municipal/industrial point source fraction,dimensionless
+2  FacPmine      SOURCE     0.020672026 0.048434042  0.4268078 6.695884e-01  1.172549 FacPmine                                                
+3  ManureP_Seas  SOURCE     0.014016666 0.006893651  2.0332719 4.222328e-02  4.054613 Livestock manure N                                      
+4  FertP_Seas    SOURCE     0.088133748 0.010775498  8.1790884 6.661338e-16  7.775874 Fertilizer N use                                        
+5  Pmines_v17    SOURCE     0.030144342 0.007847313  3.8413585 1.281183e-04  8.548103 Pmines_v17                                              
+6  GeolP         SOURCE     0.001439309 0.002155287  0.6678038 5.043747e-01  1.624816 GeolP                                                   
+7  urban_Seas    SOURCE    11.187165456 1.909428378  5.8589081 5.866071e-09  4.457056 Urban lands                       kg/km2/year           
+8  logAirTemp    DELIVF    -1.319290180 0.199653190 -6.6079093 5.624567e-11  1.962476 logAirTemp                                              
+9  logPPT        DELIVF     1.472102202 0.056754373 25.9381283 0.000000e+00  2.189771 logppt                                                  
+10 PrevSurfSoMoi DELIVF     0.526755561 0.149548757  3.5222998 4.422996e-04  3.126570 PrevSurfSoMoi                                           
+11 PrevET        DELIVF    -0.310575024 0.044690617 -6.9494459 5.726974e-12  2.953573 PrevET                                                  
+12 PrevEVIMean   DELIVF     4.250162473 0.236152081 17.9975652 0.000000e+00  6.075439 PrevEVIMean                                             
+13 lkfactup      DELIVF     2.053538638 0.646474247  3.1765204 1.524784e-03  4.181312 lkfactup                                                
+14 rchtot        STRM       0.510385956 0.075475934  6.7622344 2.029132e-11 12.902794 contrchdecay_RRLite                                     
+  
+  
+  
+  
+  EigenValue Spread  Normal PPCC  SWilks W      P-Value   Mean Exp Weighted Error
+           101.5787     0.966759 0.9364274 1.624279e-23                  1.237453
+               
+  DESIGN MATRIX
+             logAirTemp logPPT PrevSurfSoMoi PrevET PrevEVIMean lkfactup
+FacWW_P               0      0             0      0           0        0
+FacPmine              0      0             0      0           0        0
+ManureP_Seas          1      1             1      1           1        1
+FertP_Seas            1      1             1      1           1        1
+Pmines_v17            1      1             1      1           1        1
+GeolP                 1      1             1      1           1        1
+urban_Seas            1      1             1      1           1        1
+  
+  
+[1] LOG RESIDUALS, Station quantiles
+    2.5%      10%      20%      30%      50%      70%      80%      90%      97% 
+-1.59095 -0.77240 -0.42780 -0.27620 -0.01150  0.23300  0.41140  0.72910  1.22713 
+  
+  
+[1] STANDARDIZED RESIDUALS, Station quantiles
+     2.5%       16%       20%       30%       50%       70%       84%       90%       97% 
+-2.290975 -0.790240 -0.611600 -0.395100 -0.015500  0.333100  0.727960  1.045700  1.758420 
+  
+  
+[1] RATIO OF OBSERVED TO PREDICTED LOAD, Station quantiles
+    2.5%      10%      20%      30%      50%      70%      80%      90%      97% 
+0.203725 0.462000 0.651600 0.758800 0.988500 1.263000 1.508400 2.073200 3.411810 
+  
+  
+[1] OBSERVED YIELD, percentiles
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+ 0.000144  0.081807  0.232173  0.608482  0.658783 16.309501 
+  
+  
+[1] PREDICTED YIELD, percentiles
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+ 0.004227  0.088101  0.233729  0.539292  0.627325 10.020776 
+  
+  
+[1] LARGEST OUTLIERS
+[1] (absolute standardized residual>3, leverage>Critical value, or Cook's D p-value<0.10)
+       waterid demtarea rchname station_id                                        station_name staid hucTest standardResids        Resids    leverage leverageCrit       CooksD CooksDpvalue weight   tiarea   residCheck
+203        203  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL     2       5  -4.8009178613 -3.3485073880 0.017179723      0.03125 2.877813e-02    1.0000000      1  49.0590 4.8009178613
+744        744  48.3930    <NA>       <NA>                              Delaney Creek at US 41     9       4   1.8364371392  1.2691977282 0.035001642      0.03125 8.737475e-03    1.0000000      1  48.3930 1.8364371392
+888        888 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL    10      10  -0.8609209742 -0.5939849323 0.038289371      0.03125 2.107814e-03    1.0000000      1 310.2030 0.8609209742
+6384      6384 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL    50       3   0.2114457762  0.1457523234 0.040040124      0.03125 1.332025e-04    1.0000000      1 300.8259 0.2114457762
+6448      6448 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL    51      10   0.6488636841  0.4489903483 0.032642037      0.03125 1.014773e-03    1.0000000      1 310.2030 0.6488636841
+8543      8543  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL    67       4  -3.7233749277 -2.6038292852 0.011966634      0.03125 1.199350e-02    1.0000000      1  49.0590 3.7233749277
+9164      9164 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL    75       9  -0.4698658618 -0.3250734338 0.032980327      0.03125 5.378230e-04    1.0000000      1 300.8259 0.4698658618
+9228      9228 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL    76       4   0.1264020209  0.0874176471 0.033703676      0.03125 3.980585e-05    1.0000000      1 310.2030 0.1264020209
+11323    11323  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL    92       2  -5.3301074502 -3.7333268638 0.008848052      0.03125 1.811554e-02    1.0000000      1  49.0590 5.3301074502
+17201    17201 171.3213    <NA>       <NA>   HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL   144       1   1.1387563639  0.7851521779 0.039568973      0.03125 3.816121e-03    1.0000000      1 171.3213 1.1387563639
+17283    17283 438.2406    <NA>       <NA>                             Cypress Creek at SR 581   149       4  -0.6240450331 -0.4315610443 0.033787292      0.03125 9.727124e-04    1.0000000      1 438.2406 0.6240450331
+19981    19981 171.3213    <NA>       <NA>   HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL   170       6   3.7920040785  2.6466997689 0.015780639      0.03125 1.646805e-02    1.0000000      1 171.3213 3.7920040785
+20284    20284 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   177       1   1.0647582792  0.7342462120 0.039269641      0.03125 3.310011e-03    1.0000000      1 300.8259 1.0647582792
+30782    30782  49.3056    <NA>       <NA>                            Brushy Creek at Gunn Hwy   270       1   1.0915946300  0.7518300977 0.041622144      0.03125 3.696429e-03    1.0000000      1  49.3056 1.0915946300
+34248    34248 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   305       6   0.7236889722  0.4968407196 0.047750855      0.03125 1.875886e-03    1.0000000      1 310.2030 0.7236889722
+39439    39439 254.7864    <NA>       <NA>                    BLACKWATER CREEK NEAR KNIGHTS FL   347       1   3.0604246114  2.1352445707 0.016550605      0.03125 1.125893e-02    1.0000000      1 254.7864 3.0604246114
+39441    39441 171.3213    <NA>       <NA>   HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL   348       4   5.4824199828  3.8160601265 0.021172977      0.03125 4.644003e-02    1.0000000      1 171.3213 5.4824199828
+39523    39523 438.2406    <NA>       <NA>                             Cypress Creek at SR 581   353       7   3.2393501854  2.2470961770 0.027817813      0.03125 2.144683e-02    1.0000000      1 438.2406 3.2393501854
+42524    42524 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   381       8   1.3375308617  0.9253205183 0.033065851      0.03125 4.369808e-03    1.0000000      1 300.8259 1.3375308617
+42589    42589 359.2467    <NA>       <NA> S Prong of Alafia River upstream of confluence w/ N   383       6   0.4851117300  0.3357605449 0.032177072      0.03125 5.588640e-04    1.0000000      1  62.9694 0.4851117300
+50243    50243  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   450       2  -5.0463535893 -3.5315613647 0.010539878      0.03125 1.937602e-02    1.0000000      1  49.0590 5.0463535893
+50864    50864 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   458       5  -0.3673151263 -0.2531021091 0.040745074      0.03125 4.093461e-04    1.0000000      1 300.8259 0.3673151263
+53708    53708 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   484       7   0.3487634047  0.2404825465 0.039437909      0.03125 3.567157e-04    1.0000000      1 310.2030 0.3487634047
+55803    55803  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   500       5  -3.9130070183 -2.7403671467 0.009130667      0.03125 1.007812e-02    1.0000000      1  49.0590 3.9130070183
+56424    56424 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   508      10  -0.6203142006 -0.4295032841 0.031433002      0.03125 8.919728e-04    1.0000000      1 300.8259 0.6203142006
+56488    56488 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   509       8  -1.4257742106 -0.9861588256 0.033476633      0.03125 5.029246e-03    1.0000000      1 310.2030 1.4257742106
+59268    59268 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   534       2   1.2309100096  0.8498999499 0.036829579      0.03125 4.138264e-03    1.0000000      1 310.2030 1.2309100096
+64142    64142  49.3056    <NA>       <NA>                            Brushy Creek at Gunn Hwy   574       1   1.6059609369  1.0944806256 0.061646803      0.03125 1.210281e-02    1.0000000      1  49.3056 1.6059609369
+64828    64828 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   584      10   0.4474823171  0.3078516210 0.043794430      0.03125 6.550755e-04    1.0000000      1 310.2030 0.4474823171
+66923    66923  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   600      10  -5.7950239894 -4.0568905599 0.009860823      0.03125 2.388908e-02    1.0000000      1  49.0590 5.7950239894
+69703    69703  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   625       1  -3.8834952339 -2.7154518879 0.012223230      0.03125 1.333045e-02    1.0000000      1  49.0590 3.8834952339
+72483    72483  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   650       2  -3.5873338191 -2.5105977118 0.010465797      0.03125 9.722032e-03    1.0000000      1  49.0590 3.5873338191
+73104    73104 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   658       2   0.0186295229  0.0128546076 0.038090265      0.03125 9.816464e-07    1.0000000      1 300.8259 0.0186295229
+78664    78664 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   708      10   0.0006461571  0.0004458054 0.038311312      0.03125 1.188066e-09    1.0000000      1 300.8259 0.0006461571
+83603    83603  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   750       2  -4.8915276830 -3.4197577640 0.012534813      0.03125 2.169487e-02    1.0000000      1  49.0590 4.8915276830
+86383    86383  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   773      10  -5.5509705965 -3.8804121357 0.012725338      0.03125 2.836881e-02    1.0000000      1  49.0590 5.5509705965
+87068    87068 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   781       2  -1.7861815933 -1.2197416094 0.057883531      0.03125 1.400147e-02    1.0000000      1 310.2030 1.7861815933
+89163    89163  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   796      10  -4.3919719474 -3.0770292375 0.008336640      0.03125 1.158291e-02    1.0000000      1  49.0590 4.3919719474
+95123    95123 438.2406    <NA>       <NA>                             Cypress Creek at SR 581   849       1  -4.1136767327 -2.8503362530 0.030044056      0.03125 3.744026e-02    1.0000000      1 438.2406 4.1136767327
+95408    95408 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   852       8  -0.7503663002 -0.5173942636 0.039457218      0.03125 1.652070e-03    1.0000000      1 310.2030 0.7503663002
+97502    97502  49.3056    <NA>       <NA>                            Brushy Creek at Gunn Hwy   867       5  -0.4131532221 -0.2849676598 0.038854803      0.03125 4.928900e-04    1.0000000      1  49.3056 0.4131532221
+97503    97503  49.0590    <NA>       <NA>         ROCKY CREEK AT ST HWY 587 AT CITRUS PARK FL   868      10  -1.2404935642 -0.8575908702 0.034413015      0.03125 3.917349e-03    1.0000000      1  49.0590 1.2404935642
+97819    97819 254.7864    <NA>       <NA>                    BLACKWATER CREEK NEAR KNIGHTS FL   869       1   0.6981988142  0.4833467441 0.031767809      0.03125 1.142452e-03    1.0000000      1 254.7864 0.6981988142
+97821    97821 171.3213    <NA>       <NA>   HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL   870       7   1.4158115648  0.9798067538 0.032412870      0.03125 4.796344e-03    1.0000000      1 171.3213 1.4158115648
+97844    97844 503.6427    <NA>       <NA>                 Hillsborough River at US 301 bridge   872       1   0.3526891653  0.2440211044 0.032857036      0.03125 3.018519e-04    1.0000000      1  41.2875 0.3526891653
+97903    97903 438.2406    <NA>       <NA>                             Cypress Creek at SR 581   875       2  -1.7854003396 -1.2289186395 0.042816567      0.03125 1.018497e-02    1.0000000      1 438.2406 1.7854003396
+98044    98044  48.3930    <NA>       <NA>                              Delaney Creek at US 41   876       3  -0.3195168514 -0.2204281913 0.038461064      0.03125 2.916849e-04    1.0000000      1  48.3930 0.3195168514
+98124    98124 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   877       6  -0.8008898430 -0.5525235323 0.038440587      0.03125 1.831603e-03    1.0000000      1 300.8259 0.8008898430
+100904  100904 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   903       6   1.5363111403  1.0586309013 0.040707806      0.03125 7.154135e-03    1.0000000      1 300.8259 1.5363111403
+100968  100968 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   904       8   1.0246081101  0.7045878908 0.044622722      0.03125 3.502424e-03    1.0000000      1 310.2030 1.0246081101
+106464  106464 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   954      10  -0.2464150608 -0.1704908315 0.032863669      0.03125 1.473787e-04    1.0000000      1 300.8259 0.2464150608
+106528  106528 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   955       8  -0.7392687911 -0.5030835094 0.064388491      0.03125 2.686516e-03    1.0000000      1 310.2030 0.7392687911
+109164  109164  48.3930    <NA>       <NA>                              Delaney Creek at US 41   978       9   0.8457478884  0.5848986659 0.033727647      0.03125 1.783365e-03    1.0000000      1  48.3930 0.8457478884
+109244  109244 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL   979       5  -0.2511010273 -0.1736176958 0.034146776      0.03125 1.592236e-04    1.0000000      1 300.8259 0.2511010273
+109308  109308 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL   980      10  -0.7511808512 -0.5142006961 0.053334740      0.03125 2.270778e-03    1.0000000      1 310.2030 0.7511808512
+111402  111402  49.3056    <NA>       <NA>                            Brushy Creek at Gunn Hwy   995       6  -0.1525666297 -0.1013215398 0.108944831      0.03125 2.032793e-04    1.0000000      1  49.3056 0.1525666297
+111721  111721 171.3213    <NA>       <NA>   HILLSBOROUGH R AB CRYSTAL SPR NEAR ZEPHYRHILLS FL   998      10   3.4216872984  2.3903666139 0.014019037      0.03125 1.189056e-02    1.0000000      1 171.3213 3.4216872984
+112088  112088 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL  1005       2   0.1594155712  0.1095733631 0.045516027      0.03125 8.656237e-05    1.0000000      1 310.2030 0.1594155712
+112125  112125 836.9532    <NA>       <NA>                             ALAPHIA RIVER AT LITHIA  1008       7   1.6174900054  1.1118321918 0.045413224      0.03125 8.890416e-03    1.0000000      1 150.6042 1.6174900054
+114182  114182  49.3056    <NA>       <NA>                            Brushy Creek at Gunn Hwy  1020      10  -2.3999260122 -1.5853786983 0.118361661      0.03125 5.523168e-02    0.9999999      1  49.3056 2.3999260122
+120364  120364 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL  1079       4   0.1687927353  0.1122388176 0.106696983      0.03125 2.430708e-04    1.0000000      1 300.8259 0.1687927353
+120428  120428 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL  1080       7  -1.5991845080 -1.0927129824 0.056731798      0.03125 1.098653e-02    1.0000000      1 310.2030 1.5991845080
+120465  120465 836.9532    <NA>       <NA>                             ALAPHIA RIVER AT LITHIA  1083       6   1.2956848065  0.8932303640 0.039829497      0.03125 4.974245e-03    1.0000000      1 150.6042 1.2956848065
+123245  123245 836.9532    <NA>       <NA>                             ALAPHIA RIVER AT LITHIA  1108       6   0.4934402413  0.3405753601 0.037551596      0.03125 6.785659e-04    1.0000000      1 150.6042 0.4934402413
+131484  131484 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL  1177       5   1.2127493069  0.8227466523 0.070155527      0.03125 7.926211e-03    1.0000000      1 300.8259 1.2127493069
+131548  131548 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL  1178       3  -1.0388435569 -0.7091868767 0.058454707      0.03125 4.785756e-03    1.0000000      1 310.2030 1.0388435569
+134264  134264 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL  1201       5  -1.7079018927 -1.1772988806 0.040007679      0.03125 8.683072e-03    1.0000000      1 300.8259 1.7079018927
+139603  139603 438.2406    <NA>       <NA>                             Cypress Creek at SR 581  1249       5  -0.3343676408 -0.2312601173 0.033563914      0.03125 2.773447e-04    1.0000000      1 438.2406 0.3343676408
+139824  139824 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL  1251       9   0.4878061935  0.3369338645 0.036138036      0.03125 6.372594e-04    1.0000000      1 300.8259 0.4878061935
+139888  139888 310.2030    <NA>       <NA>            NORTH PRONG ALAFIA RIVER AT KEYSVILLE FL  1252       1  -0.3039242004 -0.2099322947 0.036064274      0.03125 2.468492e-04    1.0000000      1 310.2030 0.3039242004
+142383  142383 438.2406    <NA>       <NA>                             Cypress Creek at SR 581  1275       5  -3.3590449649 -2.3344089414 0.024241423      0.03125 2.002255e-02    1.0000000      1 438.2406 3.3590449649
+145384  145384 296.2773    <NA>       <NA>             SOUTH PRONG ALAFIA RIVER NEAR LITHIA FL  1303       1  -0.7698914781 -0.5310892335 0.038617735      0.03125 1.700676e-03    1.0000000      1 300.8259 0.7698914781
+148265  148265 836.9532    <NA>       <NA>                             ALAPHIA RIVER AT LITHIA  1333       1  -0.3956371261 -0.2738714433 0.031901471      0.03125 3.684319e-04    1.0000000      1 150.6042 0.3956371261
+  
+  
+                                                              
+  REGIONAL MODEL PERFORMANCE (Monitoring-Adjusted Predictions)
+   REGION NUMBER OF SITES       SSE
+1       1             129  71.16585
+2       2             132 103.38856
+3       3             140  43.51506
+4       4             135  75.70993
+5       5             130  68.78674
+6       6             148  68.31693
+7       7             121  51.28269
+8       8             155  45.56295
+9       9             126  42.07143
+10     10             128  88.51145
+  
+  
+                                                    
+  REGIONAL MODEL PERFORMANCE (Simulated Predictions)
+   REGION       SSE
+1       1  93.97272
+2       2 124.63170
+3       3  75.03932
+4       4 113.86876
+5       5  99.90114
+6       6 112.07660
+7       7  89.26856
+8       8  99.40561
+9       9  69.10096
+10     10 120.08082

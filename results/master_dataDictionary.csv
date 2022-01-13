@@ -1,68 +1,74 @@
 "varType","sparrowNames","data1UserNames","varunits","explanation","run_id","duplicate_sparrowName"
-"REQUIRED","calsites",NA,NA,"Calibration site index","TampaTP",0
-"REQUIRED","waterid","time_arcid",NA,"reach ID number","TampaTP",0
-"REQUIRED","fnode","time_from_node","","reach from (upstream) node","TampaTP",0
-"REQUIRED","tnode","time_to_node","","reach to (downstream) node","TampaTP",0
-"REQUIRED","frac","frac","frac","transport fraction (1.0 indicates no diversion of water/mass)","TampaTP",0
-"REQUIRED","iftran","iftran","","""""""""if transport"""""""" indicator (0=no; 1=yes; nontransport, shoreline segments should be set to 0)","TampaTP",0
-"REQUIRED","demiarea","IncAreaKm2","Sq. Km.","reach incremental drainage area (e.g., km2)","TampaTP",0
-"REQUIRED","hydseq","time_hydseq",NA,"hydrological sequence number (reach order number needed for sorting data1 file)","TampaTP",0
-"REQUIRED","termflag","Termflag",NA,"reach terminal flag indicator (1=reach; 3=coastal reach)","TampaTP",0
-"REQUIRED","rchtype","rchtype",NA,"reach type indicator (0=reach; 1=reservoir internal reach; 2=reservoir outlet reach; 3=coastal segment)","TampaTP",0
-"FIXED","target","delivery_target","","terminal target reach (1=target; 0=non target) for computing load delivery","TampaTP",0
-"FIXED","lat","lat","Degrees","station latitude","TampaTP",0
-"FIXED","lon","lon","Degrees","station longitude","TampaTP",0
-"FIXED","rchname",NA,NA,"reach name","TampaTP",0
-"FIXED","demtarea","CumAreaKm2","km2","reach total drainage area (e.g., km2)","TampaTP",0
-"FIXED","headflag",NA,NA,"headwater reach indicator (1=headwater reach; 0=other reach)","TampaTP",0
-"FIXED","length","LENGTHKM","km","reach length (e.g., m, km)","TampaTP",0
-"FIXED","meanq","MAFlowUcfs",NA,"mean annual streamflow","TampaTP",0
-"STRM","rchtot","contrchdecay_RRLite","days","reach time of travel (e.g., days)","TampaTP",0
-"FIXED","hload",NA,NA,"areal hydraulic load for reservoirs (e.g., m/yr)","TampaTP",0
-"FIXED","staid","staidnum","","numeric station ID (sequence number assigned by user; a new hydrological sequence number is assigned by code)","TampaTP",0
-"FIXED","station_id","station_id_600","","alphanumeric station ID","TampaTP",0
-"FIXED","station_name","station_name","","station name","TampaTP",0
-"FIXED","depvar","SeasTotP_Mon","kg/yr","mean load response variable (e.g., kg)","TampaTP",0
-"FIXED","depvar_se","SeasTotP_Mon_sd","kg/yr","mean load response variable standard error (e.g., % of mean)","TampaTP",0
-"FIXED","weight",NA,"","weight","TampaTP",0
-"OPEN","meanload",NA,"Kg. / Year","Mean Annual Load at Calibration Sites","TampaTP",0
-"OPEN","meanyield",NA,"Kg./Sq. Km./Year","Mean Annual Yield at Calibration Sites","TampaTP",0
-"OPEN","meanconc",NA,"mg/L","Mean Annual Flow-Weighted Concentration at Calibration Sites","TampaTP",0
-"OPEN","meanloadSE",NA,"Percent","Percent Error in Mean Annual Load at Calibration Sites","TampaTP",0
-"OPEN","huc4","huc4",NA,"Hydrologic unit cycle","TampaTP",0
-"OPEN","huc8","huc8",NA,"Hydrologic Unit Cycle","TampaTP",0
-"OPEN","shrub",NA,"Sq. Km.","Shrubland","TampaTP",0
-"OPEN","grass",NA,"Sq. Km.","Grassland","TampaTP",0
-"OPEN","shrubgrass",NA,"Sq. Km.","Combined shrub and grass lands","TampaTP",0
-"OPEN","agric",NA,"Sq. Km.","Agricultural lands (crops + pasture)","TampaTP",0
-"OPEN","crops",NA,"Sq. Km.","Cropland","TampaTP",0
-"OPEN","pasture",NA,"Sq. Km.","Pasture land","TampaTP",0
-"OPEN","forest",NA,"Sq. Km.","Forested land","TampaTP",0
-"OPEN","barren",NA,"Sq. Km.","Barren land","TampaTP",0
-"OPEN","wetlands",NA,"Sq. Km.","Wetlands","TampaTP",0
-"OPEN","Tagsite",NA,"","Author identification of suitable calibration sites","TampaTP",0
-"OPEN","S_point",NA,"Kg./year","Point source load-reduction factors (scenario predictions)","TampaTP",0
-"OPEN","S_ndep",NA,"Kg./year","Atmospheric deposition source load-reduction factors (scenario predictions)","TampaTP",0
-"OPEN","S_FARM_N",NA,"Kg./year","Fertilizer  source load-reduction factors (scenario predictions)","TampaTP",0
-"OPEN","PPT30MEAN","ppt","mm/yr","Precipitation (annual mean)","TampaTP",0
-"OPEN","ldrainden","ldrainden","km/km2","Drainage density (km/km2)","TampaTP",0
-"OPEN","meanTemp","meanTemp","degrees C.","Air temperature (annual mean)","TampaTP",0
-"OPEN","tiles_perc","tiles_perc","fraction of area","Tile drainage (fraction of area)","TampaTP",0
-"OPEN","soil_CLAYAVE","soil_CLAYAVE","fraction of area","Soil clay content (fraction of area)","TampaTP",0
-"SOURCE","urban_Seas","Urban_Seas","Sq.Km.","urban lands","TampaTP",0
-"SOURCE","FacWW_P","FacWW_P",NA,"Municipal/industrial point source","TampaTP",0
-"SOURCE","FacPmine","FacPmine","kg/year","Mined land permitted TP discharge to streams","TampaTP",0
-"SOURCE","ManureP_Seas","ManureP_Seas","Kg./year","Livestock manure P","TampaTP",0
-"SOURCE","FertP_Seas","FertP_Seas","Kg./year","Fertilizer P use","TampaTP",0
-"SOURCE","GeolP","GeolP","","Potential for surficial geologic material in watershed to contribute P to streams","TampaTP",0
-"SOURCE","Pmines_v17","Pmines_v17","ppm*km2","Mined area P content","TampaTP",0
-"DELIVF","PrevSurfSoMoi","PrevSurfSoMoi","","PrevSurfSoMoi","TampaTP",0
-"DELIVF","logPPT","logppt","","logppt","TampaTP",0
-"DELIVF","logAirTemp","logAirTemp","","log air temp","TampaTP",0
-"DELIVF","PrevET","PrevET","","PrevET","TampaTP",0
-"DELIVF","PrevEVIMean","PrevEVIMean","","PrevEVIMean","TampaTP",0
-"DELIVF","lkfactup","lkfactup","","log of Kfactor (erodibility index)","TampaTP",0
-"STRM","rchdecay1","rchdecay1","days","Small stream decay (mean Q<1.13 m3/s)","TampaTP",0
-"STRM","rchdecay2","rchdecay2","days","Medium stream decay (1.13 m3/s < mean Q < 1.93 m3/s)","TampaTP",0
-"STRM","rchdecay3","rchdecay3","days","Large stream decay (mean Q > 1.93 m3/s)","TampaTP",0
-"RESV","iresload","iresload","m/day","Reservoir decay (areal hydr. Load)","TampaTP",0
+"OPEN","hucTest",NA,"","","TampaTP_test4",0
+"OPEN","landTest",NA,"","","TampaTP_test4",0
+"REQUIRED","calsites",NA,NA,"Calibration site index","TampaTP_test4",0
+"REQUIRED","waterid","time_arcid",NA,"reach ID number","TampaTP_test4",0
+"REQUIRED","fnode","time_from_node","","reach from (upstream) node","TampaTP_test4",0
+"REQUIRED","tnode","time_to_node","","reach to (downstream) node","TampaTP_test4",0
+"REQUIRED","frac","frac","frac","transport fraction (1.0 indicates no diversion of water/mass)","TampaTP_test4",0
+"REQUIRED","iftran","iftran","","""""""""if transport"""""""" indicator (0=no; 1=yes; nontransport, shoreline segments should be set to 0)","TampaTP_test4",0
+"REQUIRED","demiarea","IncAreaKm2","Sq. Km.","reach incremental drainage area (e.g., km2)","TampaTP_test4",0
+"REQUIRED","hydseq","time_hydseq",NA,"hydrological sequence number (reach order number needed for sorting data1 file)","TampaTP_test4",0
+"REQUIRED","termflag","Termflag",NA,"reach terminal flag indicator (1=reach; 3=coastal reach)","TampaTP_test4",0
+"REQUIRED","rchtype","rchtype",NA,"reach type indicator (0=reach; 1=reservoir internal reach; 2=reservoir outlet reach; 3=coastal segment)","TampaTP_test4",0
+"FIXED","mapping_waterid","COMID",NA,"unique reach identifier that links to lineWaterid and polyWaterid","TampaTP_test4",0
+"FIXED","target","delivery_target","","terminal target reach (1=target; 0=non target) for computing load delivery","TampaTP_test4",0
+"FIXED","lat","lat","Degrees","station latitude","TampaTP_test4",0
+"FIXED","lon","lon","Degrees","station longitude","TampaTP_test4",0
+"FIXED","rchname",NA,NA,"reach name","TampaTP_test4",0
+"FIXED","demtarea","CumAreaKm2","km2","reach total drainage area (e.g., km2)","TampaTP_test4",0
+"FIXED","headflag",NA,NA,"headwater reach indicator (1=headwater reach; 0=other reach)","TampaTP_test4",0
+"FIXED","length","LENGTHKM","km","reach length (e.g., m, km)","TampaTP_test4",0
+"FIXED","meanq","MAFlowUcfs",NA,"mean annual streamflow","TampaTP_test4",0
+"STRM","rchtot","contrchdecay_RRLite","days","reach time of travel (e.g., days)","TampaTP_test4",0
+"FIXED","hload",NA,NA,"areal hydraulic load for reservoirs (e.g., m/yr)","TampaTP_test4",0
+"FIXED","staid","staidnum","","numeric station ID (sequence number assigned by user; a new hydrological sequence number is assigned by code)","TampaTP_test4",0
+"FIXED","station_id","station_id_600","","alphanumeric station ID","TampaTP_test4",0
+"FIXED","station_name","station_name","","station name","TampaTP_test4",0
+"FIXED","depvar","SeasTotP_Mon","kg/yr","mean load response variable (e.g., kg)","TampaTP_test4",0
+"FIXED","depvar_se","SeasTotP_Mon_sd","kg/yr","mean load response variable standard error (e.g., % of mean)","TampaTP_test4",0
+"FIXED","weight",NA,"","weight","TampaTP_test4",0
+"FIXED","year",NA,"","year","TampaTP_test4",0
+"FIXED","season",NA,"","season","TampaTP_test4",0
+"OPEN","timestep","timestep","","","TampaTP_test4",0
+"OPEN","meanload",NA,"Kg. / Year","Mean Annual Load at Calibration Sites","TampaTP_test4",0
+"OPEN","meanyield",NA,"Kg./Sq. Km./Year","Mean Annual Yield at Calibration Sites","TampaTP_test4",0
+"OPEN","meanconc",NA,"mg/L","Mean Annual Flow-Weighted Concentration at Calibration Sites","TampaTP_test4",0
+"OPEN","meanloadSE",NA,"Percent","Percent Error in Mean Annual Load at Calibration Sites","TampaTP_test4",0
+"OPEN","huc4","huc4",NA,"Hydrologic unit cycle","TampaTP_test4",0
+"OPEN","huc8","huc8",NA,"Hydrologic Unit Cycle","TampaTP_test4",0
+"OPEN","shrub",NA,"Sq. Km.","Shrubland","TampaTP_test4",0
+"OPEN","grass",NA,"Sq. Km.","Grassland","TampaTP_test4",0
+"OPEN","shrubgrass",NA,"Sq. Km.","Combined shrub and grass lands","TampaTP_test4",0
+"OPEN","agric",NA,"Sq. Km.","Agricultural lands (crops + pasture)","TampaTP_test4",0
+"OPEN","crops",NA,"Sq. Km.","Cropland","TampaTP_test4",0
+"OPEN","pasture",NA,"Sq. Km.","Pasture land","TampaTP_test4",0
+"OPEN","forest",NA,"Sq. Km.","Forested land","TampaTP_test4",0
+"OPEN","barren",NA,"Sq. Km.","Barren land","TampaTP_test4",0
+"OPEN","wetlands",NA,"Sq. Km.","Wetlands","TampaTP_test4",0
+"OPEN","Tagsite",NA,"","Author identification of suitable calibration sites","TampaTP_test4",0
+"OPEN","S_point",NA,"Kg./year","Point source load-reduction factors (scenario predictions)","TampaTP_test4",0
+"OPEN","S_ndep",NA,"Kg./year","Atmospheric deposition source load-reduction factors (scenario predictions)","TampaTP_test4",0
+"OPEN","S_FARM_N",NA,"Kg./year","Fertilizer  source load-reduction factors (scenario predictions)","TampaTP_test4",0
+"OPEN","PPT30MEAN","ppt","mm/yr","Precipitation (annual mean)","TampaTP_test4",0
+"OPEN","ldrainden","ldrainden","km/km2","Drainage density (km/km2)","TampaTP_test4",0
+"OPEN","meanTemp","meanTemp","degrees C.","Air temperature (annual mean)","TampaTP_test4",0
+"OPEN","tiles_perc","tiles_perc","fraction of area","Tile drainage (fraction of area)","TampaTP_test4",0
+"OPEN","soil_CLAYAVE","soil_CLAYAVE","fraction of area","Soil clay content (fraction of area)","TampaTP_test4",0
+"SOURCE","urban_Seas","Urban_Seas","Sq.Km.","urban lands","TampaTP_test4",0
+"SOURCE","FacWW_P","FacWW_P",NA,"Municipal/industrial point source","TampaTP_test4",0
+"SOURCE","FacPmine","FacPmine","kg/year","Mined land permitted TP discharge to streams","TampaTP_test4",0
+"SOURCE","ManureP_Seas","ManureP_Seas","Kg./year","Livestock manure P","TampaTP_test4",0
+"SOURCE","FertP_Seas","FertP_Seas","Kg./year","Fertilizer P use","TampaTP_test4",0
+"SOURCE","GeolP","GeolP","","Potential for surficial geologic material in watershed to contribute P to streams","TampaTP_test4",0
+"SOURCE","Pmines_v17","Pmines_v17","ppm*km2","Mined area P content","TampaTP_test4",0
+"DELIVF","PrevSurfSoMoi","PrevSurfSoMoi","","PrevSurfSoMoi","TampaTP_test4",0
+"DELIVF","logPPT","logppt","","logppt","TampaTP_test4",0
+"DELIVF","logAirTemp","logAirTemp","","log air temp","TampaTP_test4",0
+"DELIVF","PrevET","PrevET","","PrevET","TampaTP_test4",0
+"DELIVF","PrevEVIMean","PrevEVIMean","","PrevEVIMean","TampaTP_test4",0
+"DELIVF","lkfactup","lkfactup","","log of Kfactor (erodibility index)","TampaTP_test4",0
+"STRM","rchdecay1","rchdecay1","days","Small stream decay (mean Q<1.13 m3/s)","TampaTP_test4",0
+"STRM","rchdecay2","rchdecay2","days","Medium stream decay (1.13 m3/s < mean Q < 1.93 m3/s)","TampaTP_test4",0
+"STRM","rchdecay3","rchdecay3","days","Large stream decay (mean Q > 1.93 m3/s)","TampaTP_test4",0
+"RESV","iresload","iresload","m/day","Reservoir decay (areal hydr. Load)","TampaTP_test4",0

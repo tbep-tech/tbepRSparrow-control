@@ -1,4 +1,8 @@
 
+path_PastResults <- "results/TampaTP_test4"
+path_PastResults<-paste0(path_PastResults,"/maps/shinyArgs")
+load(path_PastResults)
+
 fls <- list.files('../tbepRSPARROW/R', pattern = '\\.R$', full.names = T)
 for(fl in fls) source(fl)
 

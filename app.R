@@ -1,13 +1,12 @@
-devtools::load_all('./RSPARROW_Master')
 
-path_PastResults <- "results/TampaTP_test4"
-path_PastResults<-paste0(path_PastResults,"/maps/shinyArgs")
-load(path_PastResults)
+fls <- list.files('../tbepRSPARROW/R', pattern = '\\.R$', full.names = T)
+for(fl in fls) source(fl)
 
 unPackList(lists = list(shinyArgs = shinyArgs),
            parentObj = list(NA)) 
 unPackList(lists = list(file.output.list = file.output.list),
            parentObj = list(NA)) 
+
 
 #trigger shiny
 shinyMap2(

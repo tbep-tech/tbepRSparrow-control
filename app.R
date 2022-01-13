@@ -1,6 +1,4 @@
-path_master<-'./RSPARROW_master'
-suppressWarnings(remove(list="runRsparrow"))
-devtools::load_all(path_master,recompile = FALSE) 
+devtools::load_all('./RSPARROW_Master')
 
 path_PastResults <- "results/TampaTP_test4"
 path_PastResults<-paste0(path_PastResults,"/maps/shinyArgs")
@@ -12,7 +10,7 @@ unPackList(lists = list(file.output.list = file.output.list),
            parentObj = list(NA)) 
 
 #trigger shiny
-RSPARROW::shinyMap2(
+shinyMap2(
   #stream/catchment
   file.output.list,map_uncertainties,BootUncertainties,
   data_names,mapping.input.list,
